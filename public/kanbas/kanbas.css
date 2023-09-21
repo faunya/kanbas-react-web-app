@@ -1,18 +1,18 @@
 .navbar {
-    margin-left: 12px;
     width:85px;
     background-color: black;
-    color: #D41B2C;
-    text-decoration: none;
 }
 
 .navbar-item {
-    margin: auto;
+    align-items: center;
+    margin-left: 5px;
+    margin: 5px;
     background-color: black;
     color: white;
     text-decoration: none;
     text-align: center;
     align-items: center;
+    font-size: small;
 }
 
 .navbar-item:hover {
@@ -24,6 +24,8 @@
 }
 
 .navbar-item-active {
+    margin: 5px;
+    font-size: small;
     background-color: white;
     color:#D41B2C;
 }
