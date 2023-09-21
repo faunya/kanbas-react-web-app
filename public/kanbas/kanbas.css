@@ -1,3 +1,13 @@
-.wd-fg-color-red {
-    color: #ff7070;
+.navbar {
+    width:85px;
+    background-color: black;
+    color: #D41B2C;
+    text-decoration: none;
+}
+
+.navbar-item {
+    margin: 5px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
 }
