@@ -37,3 +37,8 @@
     background-color: white;
     color: #D41B2C;
 }
+
+.black-bg {
+    background-color: black;
+    width: 105px;
+}
