@@ -17,9 +17,20 @@
 
 .navbar-item:hover {
     background-color: black;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    align-items: center;
 }
 
-.navbar-item:active {
+.navbar-item-active {
     background-color: white;
+    color:#D41B2C;
 }
+
+.navbar-item-active:hover {
+    background-color: white;
+    color:#D41B2C;
+}
+
 
