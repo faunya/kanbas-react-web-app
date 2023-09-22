@@ -69,11 +69,6 @@
     text-decoration: none;
 }
 
-.red-link {
-    color: #D41B2C;
-    text-decoration: none;
-}
-
 .acc-navbar-selected {
     color: black;
     text-decoration: none;
@@ -91,6 +86,11 @@
     /* Opera 7 */
     word-wrap: break-word;
     /* Internet Explorer 5.5+ */
+}
+
+.red-link {
+    color: #D41B2C;
+    text-decoration: none;
 }
 
 .black-bg {
