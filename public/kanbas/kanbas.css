@@ -41,6 +41,7 @@
 .acc-navbar {
     width: 200px;
     display: block;
+    margin-left: 25px;
 }
 
 .acc-navbar-item {
