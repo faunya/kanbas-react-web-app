@@ -5,7 +5,7 @@
 
 .navbar-item {
     align-items: center;
-    padding:5px;
+    padding: 5px;
     margin: 5px;
     background-color: black;
     color: white;
@@ -24,7 +24,7 @@
 }
 
 .navbar-item-active {
-    padding:5px;
+    padding: 5px;
     text-align: center;
     align-items: center;
     margin: 5px;
@@ -36,6 +36,56 @@
 .navbar-item-active:hover {
     background-color: white;
     color: #D41B2C;
+}
+
+.acc-navbar {
+    width: 200px;
+    display: block;
+}
+
+.acc-navbar-item {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    line-height: 30px;
+    color: #D41B2C;
+    text-decoration: none;
+
+    /* taken from Stack Overflow, used to wrap text if too long*/
+    /* https://stackoverflow.com/questions/5241369/word-wrap-a-link-so-it-doesnt-overflow-its-parent-div-width */
+    white-space: pre-wrap;
+    /* CSS3 */
+    white-space: -moz-pre-wrap;
+    /* Mozilla, since 1999 */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* Internet Explorer 5.5+ */
+}
+
+.acc-navbar-item:hover {
+    color: #D41B2C;
+    text-decoration: none;
+}
+
+.acc-navbar-selected {
+    color: black;
+    text-decoration: none;
+    border-left: solid;
+    border-color: black;
+    outline-offset: 10px;
+
+    white-space: pre-wrap;
+    /* CSS3 */
+    white-space: -moz-pre-wrap;
+    /* Mozilla, since 1999 */
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+    word-wrap: break-word;
+    /* Internet Explorer 5.5+ */
 }
 
 .black-bg {
