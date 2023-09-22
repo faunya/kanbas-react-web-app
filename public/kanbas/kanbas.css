@@ -101,10 +101,14 @@
 }
 
 .prof-label {
-    font-weight:bold;
-    font-size:large;
+    font-weight: bold;
+    font-size: large;
 }
 
 .course-card {
-    margin:15px;
+    margin: 15px;
+}
+
+.course-card-link {
+    text-decoration: none;
 }
