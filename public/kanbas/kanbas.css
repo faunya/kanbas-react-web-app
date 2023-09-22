@@ -44,9 +44,8 @@
 }
 
 .acc-navbar-item {
-    padding-top: 25px;
-    padding-bottom: 25px;
-    line-height: 30px;
+    display: inline-block;
+    margin-top: 20px;
     color: #D41B2C;
     text-decoration: none;
 
@@ -70,6 +69,8 @@
 }
 
 .acc-navbar-selected {
+    display: inline-block;
+    margin-top: 25px;
     color: black;
     text-decoration: none;
     border-left: solid;
