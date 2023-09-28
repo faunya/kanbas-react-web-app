@@ -12,15 +12,38 @@
 
 <body>
     <div class="row">
-        
-        <div class="d-lg-none black-bg" style="width: 100%;padding:10px">
+
+        <div class="d-lg-none black-bg row" style="width: 100%;padding:10px;flex-shrink: 1;">
             <i class="fa-solid fa-bars float-start min-bar-icon"></i>
-            <i class="fa-solid fa-chevron-down float-end min-bar-icon"></i>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            <button class="btn dropdown-toggle float-start" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fa-solid fa-chevron-down min-bar-icon"></i>
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+            </div>">
+            </i>
             <p style="text-align: center;color: white;">
-                CS4530.19753.202410<br/>
+                CS4530.19753.202410<br />
                 Modules
             </p>
         </div>
+
         <div class="col-1 black-bg d-none d-md-none d-lg-block" style="height:1300px;">
             <img src="../images/northeastern.png" width="85" height="85" />
             <div class="list-group navbar">
@@ -69,11 +92,12 @@
                     <button class="btn btn-secondary float-end" style="margin-left: 5px;">Student View</button>
                 </div>
                 <hr>
-
-                </div>
             </div>
 
             <div class="row">
+
+
+
                 <div class="col-2 acc-navbar d-none d-md-none d-lg-block">
                     <a href="home.html" class="acc-navbar-item">Home</a><br />
                     <a href="#" class="acc-navbar-selected"> Modules</a><br />
@@ -123,68 +147,81 @@
                         </div>
 
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             LEARNING OBJECTIVES
                         </div>
 
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">Introduction to Course</div>
                         </div>
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">Learn what is Web Developent</div>
                         </div>
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">Creating a development environment</div>
                         </div>
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">Creating a Web Application</div>
                         </div>
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">Getting started with the 1st assignment</div>
                         </div>
 
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             READING
                         </div>
 
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">Full Stack Developer - Chapter 1 - Introduction</div>
                         </div>
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">
                                 Full Stack Developer - Chapter 2 - Creating User Interfaces With HTML
                             </div>
                         </div>
 
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             SLIDES
                         </div>
 
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">
                                 <a class="red-link" href="#">Introduction to Web Devleopment Links to an external
                                     site</a>
                             </div>
                         </div>
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">
                                 <a class="red-link" href="#">Creating an HTTP server with Node.js Links to an external
                                     site</a>
                             </div>
                         </div>
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">
                                 <a class="red-link" href="#">Creating a React Application Links to an external site</a>
                             </div>
@@ -196,60 +233,70 @@
                         <div class="list-group-item list-group-item-secondary">Week 1 - HTML</div>
 
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             LEARNING OBJECTIVES
                         </div>
 
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">
                                 Learn how to create user interfaces with HTML
                             </div>
                         </div>
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">
                                 Keep working on assignment 1
                             </div>
                         </div>
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">
                                 Deploy the assignment to Netlify
                             </div>
                         </div>
 
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             READING
                         </div>
 
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">
                                 Full Stack Developer - Chapter 1 - Introduction
                             </div>
                         </div>
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">
                                 Full Stack Developer - Chapter 2 - Creating User Interfaces With HTML
                             </div>
                         </div>
 
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             SLIDES
                         </div>
 
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">
                                 <a class="red-link" href="#">Introduction to HTML and the DOM</a>
                             </div>
                         </div>
                         <div class="list-group-item">
-                            <i class="fa fa-ellipsis-v float-start" aria-hidden="true"></i>
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
                             <div class="module-item-text">
                                 <a class="red-link" href="#">Formatting Web content with Headings and Paragraphs</a>
                             </div>
@@ -264,7 +311,9 @@
                     <div>
                         <h5>Course Status</h5>
                         <button class="btn btn-secondary" style="flex-shrink: 1;">Unpublish</button>
-                        <button class="btn btn-success" style="flex-shrink: 1;"><i class="fa-regular fa-circle-check"></i> Published</button>
+                        <button class="btn btn-success" style="flex-shrink: 1;"><i
+                                class="fa-regular fa-circle-check"></i>
+                            Published</button>
                     </div>
 
                     <div style="margin-top: 20px;">
@@ -318,6 +367,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 </body>
