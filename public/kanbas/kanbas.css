@@ -127,7 +127,7 @@
 }
 
 .calendar-event {
-    display:inline;
+    display: inline;
 }
 
 .calendar-event-title {
@@ -136,5 +136,15 @@
 
 .min-bar-icon {
     color: white;
-    padding:20px;
+    padding: 20px;
+}
+
+.rounded-box {
+    border-radius: 10px;
+    border-style: solid;
+    color:black;
+    border-color: darkgrey;
+    display: inline-block;
+    margin-right: 10px;
+    text-align: center;
 }

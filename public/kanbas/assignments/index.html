@@ -4,51 +4,139 @@
 <head>
     <meta charset="UTF-8">
     <title>Assignments</title>
+    <script src="https://kit.fontawesome.com/26b496c248.js" crossorigin="anonymous"></script>
+    <link href="../..\vendors\bootstrap-5.1.3-dist\css\bootstrap.min.css" rel="stylesheet" />
+    <link href="../../vendors/fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet" />
+    <link href="../kanbas.css" rel="stylesheet" />
 </head>
 
 <body>
+    <div class="row">
+        <div class="col-1 black-bg d-none d-md-none d-lg-block" style="height:1300px;">
+            <img src="../../images/northeastern.png" width="85" height="85" />
+            <div class="list-group navbar">
+                <a href="../profile/index.html" class="list-group-item list-group-item-action navbar-item">
+                    <i class="fa fa-user-circle fa-2x" style="color:grey"></i> <br />
+                    Account
+                </a>
+                <a href="../dashboard.html" class="list-group-item list-group-item-action navbar-item">
+                    <i class="fa-solid fa-gauge fa-2x" style="color: #D41B2C"></i> <br />
+                    Dashboard</a>
+                <a href="../home.html" class="list-group-item list-group-item-action navbar-item-active">
+                    <i class="fa fa-book fa-2x" style="color: #D41B2C"></i> <br />
+                    Courses</a>
+                <a href="#" class="list-group-item list-group-item-action navbar-item">
+                    <i class="fa fa-calendar fa-2x" style="color: #D41B2C"></i> <br />
+                    Calendar</a>
+                <a href="#" class="list-group-item list-group-item-action navbar-item">
+                    <i class="fa fa-envelope-open fa-2x" style="color: #D41B2C"></i> <br />
+                    Inbox</a>
+                <a href="#" class="list-group-item list-group-item-action navbar-item">
+                    <i class="fa fa-clock fa-2x" style="color: #D41B2C"></i> <br />
+                    History</a>
+                <a href="#" class="list-group-item list-group-item-action navbar-item">
+                    <i class="fa fa-tv fa-2x" style="color: #D41B2C"></i> <br />
+                    Studio</a>
+                <a href="#" class="list-group-item list-group-item-action navbar-item">
+                    <i class="fa fa-arrow-alt-circle-right fa-2x" style="color: #D41B2C"></i> <br />
+                    Commons</a>
+                <a href="#" class="list-group-item list-group-item-action navbar-item">
+                    <i class="fa fa-question-circle fa-2x" style="color: #D41B2C"></i> <br />
+                    Help</a>
+            </div>
+        </div>
+
+        <div class="col-10">
+            <div class="row">
+                <div style="margin: 25px;" class="d-none d-md-none d-lg-block">
+                    <i class="fa fa-bars fa-2x" style="color:grey;white-space: nowrap"></i> &nbsp;
+                    <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';display:inline-block">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="home.html" class="red-link">CS4530.19753.202410</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Assignments</li>
+                        </ol>
+                    </nav>
+                    <button class="btn btn-secondary float-end" style="margin-left: 5px;">Student View</button>
+                </div>
+                <hr>
+            </div>
+
+            <div class="row">
+                <div class="col-2 acc-navbar d-none d-md-none d-lg-block">
+                    <a href="../home.html" class="acc-navbar-item">Home</a><br />
+                    <a href="#" class="acc-navbar-item">Modules</a><br />
+                    <a href="#" class="acc-navbar-item">Piazza</a><br />
+                    <a href="#" class="acc-navbar-item">Zoom Meetings</a><br />
+                    <a href="./assignments/index.html" class="acc-navbar-selected"> Assignments</a><br />
+                    <a href="#" class="acc-navbar-item">Quizzes</a><br />
+                    <a href="../grades.html" class="acc-navbar-item">Grades</a><br />
+                    <a href="#" class="acc-navbar-item">People</a><br />
+                    <a href="#" class="acc-navbar-item">Panopto Video</a><br />
+                    <a href="#" class="acc-navbar-item">Discussions</a><br />
+                    <a href="#" class="acc-navbar-item">Anouncements</a><br />
+                    <a href="#" class="acc-navbar-item">Pages</a><br />
+                    <a href="#" class="acc-navbar-item">Files</a><br />
+                    <a href="#" class="acc-navbar-item">Rubrics</a><br />
+                    <a href="#" class="acc-navbar-item">Outcomes</a><br />
+                    <a href="#" class="acc-navbar-item">Collaborations</a><br />
+                    <a href="#" class="acc-navbar-item">Syllabus</a><br />
+                    <a href="#" class="acc-navbar-item">Settings</a><br />
+                </div>
+
+                <div class="col-10" style="flex-grow: 1;">
+                    <div>
+                        <input type="text" placeholder="Search for Assignment" style="width: 300px;padding: 10px;" />
+
+                        <button class="btn btn-secondary float-end" style="margin-left: 5px;">
+                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-danger float-end" style="margin-left: 5px;">
+                            <i class="fa-solid fa-plus"></i>
+                            Assignment
+                        </button>
+
+                        <button class="btn btn-secondary float-end" style="margin-left: 5px;">
+                            <i class="fa-solid fa-plus"></i>
+                            Group
+                        </button>
+                    </div>
+
+                    <div class="list-group" style="display: block;margin-top: 50px;">
+                        <hr />
+                        <div class="list-group-item list-group-item-secondary">
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 20px;"></i>
+                            <i class="fa-solid fa-plus float-end"></i>
+                            <span class="rounded-box float-end"> 40% of total </span>
+                            <span style="font-weight:bold;">Assignments</span>
+                        </div>
+
+                        <div class="list-group-item">
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
+                            LEARNING OBJECTIVES
+                        </div>
+
+                        <div class="list-group-item">
+                            <i class="fa fa-ellipsis-v float-end" aria-hidden="true" style="margin-left: 10px;"></i>
+                            <i class="fa-solid fa-circle-check float-end" style="color: green;"></i>
+                            <div class="module-item-text">Introduction to Course</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
     <table width="100%">
         <tbody>
             <tr VALIGN="TOP">
-                <td>
-                    <ul>
-                        <li><a href="../profile/index.html">Account</a></li>
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Courses</a></li>
-                        <li><a href="#">Calendar</a></li>
-                        <li><a href="#">Inbox</a></li>
-                        <li><a href="#">History</a></li>
-                        <li><a href="#">Studio</a></li>
-                        <li><a href="#">Commons</a></li>
-                        <li><a href="#">Help</a></li>
-                    </ul>
-                </td>
 
                 <td>
-                    <ul>
-                        <li><a href="../home.html">Home</a></li>
-                        <li><a href="#">Modules</a></li>
-                        <li><a href="#">Piazza</a></li>
-                        <li><a href="#">Zoom Meetings</a></li>
-                        <li><a href="index.html">Assignments</a></li>
-                        <li><a href="#">Quizzes</a></li>
-                        <li><a href="../grades.html">Grades</a></li>
-                        <li><a href="#">People</a></li>
-                        <li><a href="#">Panopto Video</a></li>
-                        <li><a href="#">Discussions</a></li>
-                        <li><a href="#">Announcements</a></li>
-                        <li><a href="#">Pages</a></li>
-                        <li><a href="#">Files</a></li>
-                        <li><a href="#">Rubrics</a></li>
-                        <li><a href="#">Outcomes</a></li>
-                        <li><a href="#">Collaborations</a></li>
-                        <li><a href="#">Syllabus</a></li>
-                        <li><a href="#">Settings</a></li>
-                    </ul>
-                </td>
-
-                <td>
-                    <input placeholder="Search for Assignments"/>
+                    <input placeholder="Search for Assignments" />
                     <button>Group</button>
                     <button>Assignment</button>
                     <select>
@@ -70,22 +158,27 @@
                     <ul>
                         <li><a href="edit.html">A1 - Env + HTML</a><br />
                             <a href="#">Multiple Modules</a>
-                            | Not available yet</li>
+                            | Not available yet
+                        </li>
                         <li><a href="#">A2 - CSS + BOOTSTRAP</a><br />
                             <a href="#">Multiple Modules</a>
                             | Not available yet
                         <li><a href="#">A3 - JS + REACT</a><br />
                             <a href="#">Multiple Modules</a>
-                            | Not available yet</li>
+                            | Not available yet
+                        </li>
                         <li><a href="#">A4 - State + REDUX</a><br />
                             <a href="#">Multiple Modules</a>
-                            | Not available yet</li>
+                            | Not available yet
+                        </li>
                         <li><a href="#">A5 - NODE + SESSION</a><br />
                             <a href="#">Multiple Modules</a>
-                            | Not available yet</li>
+                            | Not available yet
+                        </li>
                         <li><a href="#">A6 - MONGO + MONGOOSE</a><br />
                             <a href="#">Multiple Modules</a>
-                            | Not available yet</li>
+                            | Not available yet
+                        </li>
                     </ul>
 
                     <h2>QUIZZES 10% of Total
@@ -101,22 +194,26 @@
                         </select>
                     </h2>
                     <ul>
-                        
+
                         <li><a href="#">Q1 - HTML</a><br />
                             <a href="#">Multiple Modules</a>
-                            | Not available yet</li>
+                            | Not available yet
+                        </li>
                         <li><a href="#">Q2 - CSS</a><br />
                             <a href="#">Multiple Modules</a>
                             | Not available yet
                         <li><a href="#">Q3 - JS, ES6</a><br />
                             <a href="#">Multiple Modules</a>
-                            | Not available yet</li>
+                            | Not available yet
+                        </li>
                         <li><a href="#">Q4 - NODE</a><br />
                             <a href="#">Multiple Modules</a>
-                            | Not available yet</li>
+                            | Not available yet
+                        </li>
                         <li><a href="#">Q5 - MONGO</a><br />
                             <a href="#">Multiple Modules</a>
-                            | Not available yet</li>
+                            | Not available yet
+                        </li>
                     </ul>
 
                     <h2>EXAMS 20% of Total
@@ -134,7 +231,8 @@
                     <ul>
                         <li><a href="#">Midterm</a><br />
                             <a href="#">Multiple Modules</a>
-                            | Not available yet</li>
+                            | Not available yet
+                        </li>
                         <li><a href="#">Final</a><br />
                             <a href="#">Multiple Modules</a>
                             | Not available yet
@@ -155,7 +253,8 @@
                     <ul>
                         <li><a href="#">Project</a><br />
                             <a href="#">Multiple Modules</a>
-                            | Not available yet</li>
+                            | Not available yet
+                        </li>
                     </ul>
                 </td>
             </tr>
