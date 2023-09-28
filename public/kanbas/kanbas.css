@@ -132,3 +132,8 @@
 .calendar-event-title {
     font-size: large;
 }
+
+.min-bar-icon {
+    color: white;
+    padding:20px;
+}
