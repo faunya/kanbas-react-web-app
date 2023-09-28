@@ -112,3 +112,11 @@
 .course-card-link {
     text-decoration: none;
 }
+
+.module-item {
+    font-weight: bold;
+}
+
+.module-item-text {
+    padding-left: 70px;
+}
