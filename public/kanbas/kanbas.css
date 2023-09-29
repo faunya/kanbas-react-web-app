@@ -148,3 +148,14 @@
     margin-right: 10px;
     text-align: center;
 }
+
+.assignment-desc {
+    margin-left: 25px;
+    display: inline-block;
+}
+
+.bold-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
