@@ -159,3 +159,11 @@
     color: black;
     font-weight: bold;
 }
+
+.top-mar-20 {
+    margin-top: 20px;
+}
+
+.all-mar-20 {
+    margin: 20px;
+}
