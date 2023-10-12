@@ -5,11 +5,11 @@ function ImpliedReturn() {
 
     return (
         <>
-         <h3>Implied Return</h3>
-         fourTimesFive = {fourTimesFive}<br />
-         multiply(4,5) = {fourTimesFive}<br />
+            <h3>Implied Return</h3>
+            fourTimesFive = {fourTimesFive}<br />
+            multiply(4,5) = {fourTimesFive}<br />
         </>
-       )   
+    );
 }
 
 export default ImpliedReturn
