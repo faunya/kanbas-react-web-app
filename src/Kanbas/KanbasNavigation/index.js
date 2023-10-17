@@ -1,7 +1,9 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useLocation } from "react-router-dom";
 function KanbasNavigation() {
     const links = ["Account", "Dashboard", "Courses", "Calendar", "Inbox", "History", "Studio", "Commons", "Help"];
-    const icons = ["bi bi-person-circle", "bi bi-speedometer2",]
+    const icons = ["fa fa-user-circle", "fa-solid fa-gauge", "fa fa-book", "fa fa-calendar", "fa fa-envelope-open", 
+                    "fa fa-clock", "fa fa-tv", "fa fa-arrow-alt-circle-right", "fa fa-question-circle"];
     const { pathname } = useLocation();
     return (
 
@@ -11,7 +13,7 @@ function KanbasNavigation() {
                     key={index}
                     to={`/Kanbas/${link}`}
                     className={`list-group-item ${pathname.includes(link) && "active"}`}>
-                    <i class={icons[key]}></i><br />
+                    <FontAwesomeIcon icon={icons[index]} size="2x" color="red"></FontAwesomeIcon><br />
                     {link}
                 </Link>
             ))}

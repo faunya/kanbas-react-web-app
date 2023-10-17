@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-icons";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "@fortawesome/react-fontawesome"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
