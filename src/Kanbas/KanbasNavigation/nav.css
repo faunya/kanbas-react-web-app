@@ -1,0 +1,36 @@
+
+
+.navbar-item {
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    align-items: center;
+    font-size: small;
+}
+
+.navbar-item:hover {
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    align-items: center;
+}
+
+.navbar-item-active {
+    padding: 5px;
+    text-align: center;
+    align-items: center;
+    margin: 5px;
+    font-size: small;
+    background-color: white;
+    color: #D41B2C;
+}
+
+.navbar-item-active:hover {
+    background-color: white;
+    color: #D41B2C;
+}

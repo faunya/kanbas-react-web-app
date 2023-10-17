@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useLocation } from "react-router-dom";
+import "./nav.css";
 
 function KanbasNavigation() {
     const links = ["Account", "Dashboard", "Courses", "Calendar", "Inbox", "History", "Studio", "Commons", "Help"];
@@ -8,12 +9,12 @@ function KanbasNavigation() {
     const { pathname } = useLocation();
     return (
 
-        <div className="list-group" style={{ width: 150 }}>
+        <div className="list-group" style={{ width: 100 }}>
             {links.map((link, index) => (
                 <Link
                     key={index}
                     to={`/Kanbas/${link}`}
-                    className={`list-group-item ${pathname.includes(link) && "active"}`}>
+                    className={`list-group-item navbar-item ${pathname.includes(link) && "active"}`}>
                     <FontAwesomeIcon icon={icons[index]} size="2x" color={("Account".match(link) && "white") || "red"}></FontAwesomeIcon><br />
                     {link}
                 </Link>
