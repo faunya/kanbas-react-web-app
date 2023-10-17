@@ -1,15 +1,13 @@
-
-
 .navbar-item {
     align-items: center;
-    padding: 5px;
-    margin: 5px;
+    padding: 10px;
     background-color: black;
     color: white;
     text-decoration: none;
     text-align: center;
     align-items: center;
     font-size: small;
+    border: 0;
 }
 
 .navbar-item:hover {
@@ -21,10 +19,9 @@
 }
 
 .navbar-item-active {
-    padding: 5px;
+    padding: 10px;
     text-align: center;
     align-items: center;
-    margin: 5px;
     font-size: small;
     background-color: white;
     color: #D41B2C;
