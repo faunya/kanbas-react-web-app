@@ -1,0 +1,20 @@
+.page-navbar-item {
+    color: #D41B2C;
+    text-decoration: none;
+    border: 0;
+}
+
+.page-navbar-item:hover {
+    color: #D41B2C;
+    text-decoration: none;
+}
+
+.page-navbar-selected {
+    color: black;
+    text-decoration: none;
+    border-bottom: 0;
+    border-top: 0;
+    border-right: 0;
+    border-left: solid;
+    border-color: black;
+}
