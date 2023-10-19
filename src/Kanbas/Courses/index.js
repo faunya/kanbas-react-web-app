@@ -6,6 +6,7 @@ import { Breadcrumb } from "react-bootstrap";
 import CourseNavigation from "./CourseNavigation";
 import Modules from "./Modules";
 import Home from "./Home";
+import Assignments from "./Assignments";
 
 import "./course.css";
 
@@ -29,16 +30,16 @@ function Courses() {
                     <Breadcrumb.Item active>{curPage}</Breadcrumb.Item>
                 </Breadcrumb>
                 <hr />
-                <div style={{ display: "inline-block" , width:"9%"}}>
+                <div style={{ display: "inline-block", width: "9%" }}>
                     <CourseNavigation />
 
                 </div>
-                <div style={{ display: "inline-block", left: "320px", verticalAlign: "top", width:"91%"}}>
+                <div style={{ display: "inline-block", left: "320px", verticalAlign: "top", width: "91%" }}>
                     <Routes>
                         <Route path="/" element={<Navigate to="Home" />} />
                         <Route path="Home" element={<Home />} />
                         <Route path="Modules" element={<Modules />} />
-                        <Route path="Assignments" element={<h1>Assignments</h1>} />
+                        <Route path="Assignments" element={<Assignments />} />
                         <Route
                             path="Assignments/:assignmentId"
                             element={<h1>Assignment Editor</h1>}

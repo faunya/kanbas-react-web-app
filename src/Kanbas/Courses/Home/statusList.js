@@ -36,8 +36,39 @@ function StatusList() {
                 </button><br />
             </div>
 
-            <div>
+            <div style={{ marginTop: "20px" }}>
+                <h4>To Do</h4>
+                <hr />
 
+                <div>
+                    <FontAwesomeIcon icon="fa-solid fa-circle-check" className="calendar-item-icon" />
+                    <div className="calendar-item">
+                        <a href="#">Lecture</a>
+                        <p>CS4550.12641.202410<br />
+                            Sep 7 at 11:45am
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <FontAwesomeIcon icon="fa-solid fa-circle-check" className="calendar-item-icon" />
+                    <div className="calendar-item">
+                        <a href="#">Lecture</a>
+                        <p>CS4550.12641.202410<br />
+                            Sep 11 at 11:45am
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <FontAwesomeIcon icon="fa-solid fa-circle-check" className="calendar-item-icon" />
+                    <div className="calendar-item">
+                        <a href="#">CS5610 06 SP23 Lecture</a>
+                        <p>CS4550.12641.202410<br />
+                            Sep 7 at 11:45am
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );

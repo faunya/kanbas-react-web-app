@@ -9,3 +9,20 @@
 .button-icon {
     margin-right: 5px;
 }
+
+.calendar-item {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.calendar-item-icon {
+    display: inline-block;
+    color: #D41B2C;
+    vertical-align: top;
+    margin: 5px;
+}
+
+.red-link {
+    color: #D41B2C;
+    text-decoration: none;
+}
