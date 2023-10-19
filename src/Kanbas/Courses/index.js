@@ -29,11 +29,11 @@ function Courses() {
                     <Breadcrumb.Item active>{curPage}</Breadcrumb.Item>
                 </Breadcrumb>
                 <hr />
-                <div style={{ display: "inline-block" }}>
+                <div style={{ display: "inline-block" , width:"9%"}}>
                     <CourseNavigation />
 
                 </div>
-                <div style={{ display: "inline-block", left: "320px", verticalAlign: "top", width:"80%"}}>
+                <div style={{ display: "inline-block", left: "320px", verticalAlign: "top", width:"91%"}}>
                     <Routes>
                         <Route path="/" element={<Navigate to="Home" />} />
                         <Route path="Home" element={<Home />} />

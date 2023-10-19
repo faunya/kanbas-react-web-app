@@ -11,16 +11,14 @@ function ModuleList() {
     const modules = db.modules;
     return (
         <div>
-            <div>
-                <div className="float-end">
-                <Button className="grey-button" variant="light">Primary</Button>
-                <Button className="grey-button" variant="light">Primary</Button>
-                <Button className="grey-button" variant="light">Primary</Button>
-                <Button className="grey-button" variant="danger">Primary</Button>
-                <Button className="grey-button" variant="light">Primary</Button>
-
+            <div className="row" >
+                <div>
+                    <Button className="grey-button float-end" variant="light">Primary</Button>
+                    <Button className="grey-button float-end" variant="danger">Primary</Button>
+                    <Button className="grey-button float-end" variant="light">Primary</Button>
+                    <Button className="grey-button float-end" variant="light">Primary</Button>
+                    <Button className="grey-button float-end" variant="light">Primary</Button>
                 </div>
-
             </div>
 
             <hr />
