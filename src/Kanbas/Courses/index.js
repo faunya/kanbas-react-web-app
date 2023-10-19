@@ -6,6 +6,8 @@ import { Breadcrumb } from "react-bootstrap";
 import CourseNavigation from "./CourseNavigation";
 import Modules from "./Modules";
 
+import "./course.css";
+
 function Courses() {
     const { courseId } = useParams();
     const course = db.courses.find((course) => course._id === courseId);
@@ -22,7 +24,7 @@ function Courses() {
             <div style={{ "margin": "25px" }}>
                 <FontAwesomeIcon icon={'fa fa-bars'} size="2x" style={{ color: "#D41B2C" }}></FontAwesomeIcon>
                 <Breadcrumb style={{ "display": "inline-block", "marginLeft": "25px", color: "#D41B2C" }}>
-                    <Breadcrumb.Item href={homeURL}>{course.number} {course.name}</Breadcrumb.Item>
+                    <Breadcrumb.Item href={homeURL} className="red-link" style={{color:"#D41B2C"}}>{course.number} {course.name}</Breadcrumb.Item>
                     <Breadcrumb.Item active>{curPage}</Breadcrumb.Item>
                 </Breadcrumb>
                 <hr />

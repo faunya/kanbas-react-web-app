@@ -1,0 +1,9 @@
+.red-link {
+    color: #D41B2C !important;
+    text-decoration: none !important;
+}
+
+.red-link > a {
+    color: #D41B2C;
+    text-decoration: none;
+}
