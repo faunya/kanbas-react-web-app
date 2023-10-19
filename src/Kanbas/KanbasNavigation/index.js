@@ -7,7 +7,7 @@ function KanbasNavigation() {
     const icons = ["fa fa-user-circle", "fa-solid fa-gauge", "fa fa-book", "fa fa-calendar", "fa fa-envelope-open",
         "fa fa-clock", "fa fa-tv", "fa fa-arrow-alt-circle-right", "fa fa-question-circle"];
     const { pathname } = useLocation();
-    
+
     return (
         <div style={{ width: 100, height: 1000, "backgroundColor": "black" }}>
             <div className="list-group" style={{ width: 100, "backgroundColor": "black", padding: "5px" }}>
