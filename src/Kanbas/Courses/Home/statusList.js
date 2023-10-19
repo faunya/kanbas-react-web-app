@@ -1,7 +1,15 @@
+import React from "react";
+import { Link, useParams } from "react-router-dom";
+
 import "./home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import db from "../../Database";
 
 function StatusList() {
+    const { courseId } = useParams();
+    const assignments = db.assignments;
+    const courseAssignments = assignments.filter(
+        (assignment) => assignment.course === courseId);
 
     return (
         <div>
@@ -40,35 +48,25 @@ function StatusList() {
                 <h4>To Do</h4>
                 <hr />
 
-                <div>
-                    <FontAwesomeIcon icon="fa-solid fa-circle-check" className="calendar-item-icon" />
-                    <div className="calendar-item">
-                        <a href="#">Lecture</a>
-                        <p>CS4550.12641.202410<br />
-                            Sep 7 at 11:45am
-                        </p>
+                {courseAssignments.map((assignment) => (
+                    <div className="list-group-item">
+                        <div>
+                            <FontAwesomeIcon icon="fa-solid fa-circle-check" className="calendar-item-icon" />
+                            <div className="calendar-item">
+                                <Link
+                                    key={assignment._id}
+                                    to={`/Kanbas/Courses/${courseId}/Assignments/${assignment._id}`}
+                                    className="ass-link">
+                                    {assignment.title}
+                                </Link><br />
+                                <p>
+                                    {assignment.course} <br />
+                                    Due Date
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div>
-                    <FontAwesomeIcon icon="fa-solid fa-circle-check" className="calendar-item-icon" />
-                    <div className="calendar-item">
-                        <a href="#">Lecture</a>
-                        <p>CS4550.12641.202410<br />
-                            Sep 11 at 11:45am
-                        </p>
-                    </div>
-                </div>
-
-                <div>
-                    <FontAwesomeIcon icon="fa-solid fa-circle-check" className="calendar-item-icon" />
-                    <div className="calendar-item">
-                        <a href="#">CS5610 06 SP23 Lecture</a>
-                        <p>CS4550.12641.202410<br />
-                            Sep 7 at 11:45am
-                        </p>
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     );

@@ -1,7 +1,6 @@
 import ModuleList from "../Modules/ModuleList";
 import StatusList from "./statusList";
 
-
 function Home() {
     return (
         <div>
