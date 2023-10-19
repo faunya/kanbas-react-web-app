@@ -5,7 +5,7 @@ import "./dashboard.css";
 function Dashboard() {
     const courses = db.courses;
     return (
-        <div style={{ marginLeft: "25px" }}>
+        <div style={{ marginLeft: "25px" , marginTop:"25px"}}>
             <h1>Dashboard</h1>
             <hr />
             <h3>Published Courses (3)</h3>

@@ -4,15 +4,16 @@
 }
 
 .navbar-item {
+    background-color: black;
     align-items: center;
     padding: 5px;
     margin: 5px;
-    background-color: black;
     color: white;
     text-decoration: none;
     text-align: center;
     align-items: center;
     font-size: small;
+    border: 0;
 }
 
 .navbar-item:hover {
