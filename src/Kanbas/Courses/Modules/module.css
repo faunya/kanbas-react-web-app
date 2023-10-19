@@ -1,0 +1,7 @@
+.module-item {
+    margin-bottom:"50px" !important;
+    border:2px;
+    outline-color: black;
+    outline: 1px;
+    background-color: lightgrey !important;
+}

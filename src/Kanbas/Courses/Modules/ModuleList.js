@@ -1,18 +1,19 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import db from "../../Database";
+import "./module.css"
 
 
 function ModuleList() {
     const { courseId } = useParams();
     const modules = db.modules;
     return (
-        <ul className="list-group">
+        <ul className="list-group" style={{ marginTop: "30px" }}>
             {
                 modules
                     .filter((module) => module.course === courseId)
                     .map((module, index) => (
-                        <li key={index} className="list-group-item">
+                        <li key={index} className="list-group-item module-item" style={{ marginBottom: "50px" }}>
                             <h3>{module.name}</h3>
                             <p>{module.description}</p>
                         </li>
