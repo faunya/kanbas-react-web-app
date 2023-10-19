@@ -2,16 +2,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import db from "../../Kanbas/Database";
 import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import CourseNavigation from "./CourseNavigation";
+import { Breadcrumb } from "react-bootstrap";
 
 function Courses() {
     const { courseId } = useParams();
     const course = db.courses.find((course) => course._id === courseId);
+
+    // getting the course URL and creating the home URL
+    const curUrl = window.location.href;
+    const split = curUrl.split("/");
+    const curPage = split.pop();
+    const courseURL = split.join("/");
+    const homeURL = courseURL.concat("/")
+
     return (
         <div>
             <div style={{ "margin": "25px" }}>
                 <FontAwesomeIcon icon={'fa fa-bars'} size="2x" style={{ color: "#D41B2C" }}></FontAwesomeIcon>
-                <h1 style={{ "display": "inline-block", "marginLeft": "25px", color: "#D41B2C" }}> {course.number} {course.name}</h1>
-
+                <Breadcrumb style={{ "display": "inline-block", "marginLeft": "25px", color: "#D41B2C" }}>
+                    <Breadcrumb.Item href={homeURL}>{course.number} {course.name}</Breadcrumb.Item>
+                    <Breadcrumb.Item active>{curPage}</Breadcrumb.Item>
+                </Breadcrumb>
                 <hr />
                 <CourseNavigation />
                 <div>
