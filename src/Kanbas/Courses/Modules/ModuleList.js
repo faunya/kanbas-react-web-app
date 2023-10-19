@@ -1,25 +1,43 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import db from "../../Database";
-import "./module.css"
+import Button from 'react-bootstrap/Button';
+
+import "./module.css";
 
 
 function ModuleList() {
     const { courseId } = useParams();
     const modules = db.modules;
     return (
-        <ul className="list-group" style={{ marginTop: "30px" }}>
-            {
-                modules
-                    .filter((module) => module.course === courseId)
-                    .map((module, index) => (
-                        <li key={index} className="list-group-item module-item" style={{ marginBottom: "50px" }}>
-                            <h3>{module.name}</h3>
-                            <p>{module.description}</p>
-                        </li>
-                    ))
-            }
-        </ul>
+        <div>
+            <div>
+                <div className="float-end">
+                <Button className="grey-button" variant="light">Primary</Button>
+                <Button className="grey-button" variant="light">Primary</Button>
+                <Button className="grey-button" variant="light">Primary</Button>
+                <Button className="grey-button" variant="danger">Primary</Button>
+                <Button className="grey-button" variant="light">Primary</Button>
+
+                </div>
+
+            </div>
+
+            <hr />
+            <ul className="list-group" style={{ marginTop: "30px" }}>
+                {
+                    modules
+                        .filter((module) => module.course === courseId)
+                        .map((module, index) => (
+                            <li key={index} className="list-group-item module-item" style={{ marginBottom: "50px" }}>
+                                <h3>{module.name}</h3>
+                                <p>{module.description}</p>
+                            </li>
+                        ))
+                }
+            </ul>
+
+        </div>
     );
 }
 export default ModuleList;

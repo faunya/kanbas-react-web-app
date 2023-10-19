@@ -5,6 +5,7 @@ import { Breadcrumb } from "react-bootstrap";
 
 import CourseNavigation from "./CourseNavigation";
 import Modules from "./Modules";
+import Home from "./Home";
 
 import "./course.css";
 
@@ -24,31 +25,26 @@ function Courses() {
             <div style={{ "margin": "25px" }}>
                 <FontAwesomeIcon icon={'fa fa-bars'} size="2x" style={{ color: "#D41B2C" }}></FontAwesomeIcon>
                 <Breadcrumb style={{ "display": "inline-block", "marginLeft": "25px", color: "#D41B2C" }}>
-                    <Breadcrumb.Item href={homeURL} className="red-link" style={{color:"#D41B2C"}}>{course.number} {course.name}</Breadcrumb.Item>
+                    <Breadcrumb.Item href={homeURL} className="red-link" style={{ color: "#D41B2C" }}>{course.number} {course.name}</Breadcrumb.Item>
                     <Breadcrumb.Item active>{curPage}</Breadcrumb.Item>
                 </Breadcrumb>
                 <hr />
-                <CourseNavigation />
-                <div>
-                    <div
-                        className="overflow-y-scroll position-fixed bottom-0 end-0"
-                        style={{
-                            left: "320px",
-                            top: "100px",
-                        }}
-                    >
-                        <Routes>
-                            <Route path="/" element={<Navigate to="Home" />} />
-                            <Route path="Home" element={<h1>Home</h1>} />
-                            <Route path="Modules" element={<Modules />} />
-                            <Route path="Assignments" element={<h1>Assignments</h1>} />
-                            <Route
-                                path="Assignments/:assignmentId"
-                                element={<h1>Assignment Editor</h1>}
-                            />
-                            <Route path="Grades" element={<h1>Grades</h1>} />
-                        </Routes>
-                    </div>
+                <div style={{ display: "inline-block" }}>
+                    <CourseNavigation />
+
+                </div>
+                <div style={{ display: "inline-block", left: "320px", verticalAlign: "top", width:"80%"}}>
+                    <Routes>
+                        <Route path="/" element={<Navigate to="Home" />} />
+                        <Route path="Home" element={<Home />} />
+                        <Route path="Modules" element={<Modules />} />
+                        <Route path="Assignments" element={<h1>Assignments</h1>} />
+                        <Route
+                            path="Assignments/:assignmentId"
+                            element={<h1>Assignment Editor</h1>}
+                        />
+                        <Route path="Grades" element={<h1>Grades</h1>} />
+                    </Routes>
                 </div>
 
             </div>

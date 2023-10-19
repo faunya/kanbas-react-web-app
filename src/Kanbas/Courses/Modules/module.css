@@ -5,3 +5,10 @@
     outline: 1px;
     background-color: lightgrey !important;
 }
+
+.grey-button {
+    margin: 5px;
+    outline: 1px;
+    outline-color: lightgrey;
+    outline-style: solid;
+}
