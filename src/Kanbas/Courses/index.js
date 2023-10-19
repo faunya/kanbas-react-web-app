@@ -30,6 +30,7 @@ function Courses() {
                     <Breadcrumb.Item active>{curPage}</Breadcrumb.Item>
                 </Breadcrumb>
                 <hr />
+                
                 <div style={{ display: "inline-block", width: "9%" }}>
                     <CourseNavigation />
 

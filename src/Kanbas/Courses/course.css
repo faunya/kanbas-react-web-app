@@ -1,4 +1,12 @@
-.red-link > a {
+.red-link>a {
     color: #D41B2C;
     text-decoration: none;
+}
+
+/*
+Taken from stack overflow
+https://stackoverflow.com/questions/69175403/how-do-i-replace-separator-of-breadcrumb-in-react-bootstrap-using-css
+*/
+.breadcrumb-item+.breadcrumb-item::before {
+    content: var(--bs-breadcrumb-divider, ">") !important;
 }
