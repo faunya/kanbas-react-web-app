@@ -1,14 +1,26 @@
 .module-item {
-    margin-bottom:"50px" !important;
-    border:2px;
+    margin-bottom: "50px" !important;
+    border: 2px;
     outline-color: black;
     outline: 1px;
     background-color: lightgrey !important;
 }
 
-.grey-button {
-    margin: 5px;
+.module-buttons .grey-button {
+    color: black;
+    border-color: lightgrey;
+    border-style: solid;
+    background-color: #e8e8e8;
+}
+
+.module-buttons .grey-button:hover {
+    color: black;
+    border-color: lightgrey;
+    border-style: solid;
+    
+}
+
+.module-buttons .mod-button {
+    margin: 1px;
     outline: 1px;
-    outline-color: lightgrey;
-    outline-style: solid;
 }
