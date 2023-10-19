@@ -1,0 +1,11 @@
+.home-sidebar .home-button {
+    width: 100%;
+    margin-top: 5px;
+    background-color: #e8e8e8;
+    color: black;
+    border-color: lightgrey;
+}
+
+.button-icon {
+    margin-right: 5px;
+}

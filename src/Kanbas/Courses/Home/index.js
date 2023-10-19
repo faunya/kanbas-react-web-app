@@ -1,17 +1,15 @@
 import ModuleList from "../Modules/ModuleList";
+import StatusList from "./statusList";
 
 
 function Home() {
     return (
         <div>
-
-            <h2>Home</h2>
-            <div style={{ display: "inline-block" , width:"80%"}}>
+            <div style={{ display: "inline-block", width: "80%" }}>
                 <ModuleList />
             </div>
-            <div style={{ display: "inline-block" , width:"20%"}}>
-                <h2>Status</h2>
-
+            <div style={{ display: "inline-block", width: "19%", verticalAlign: "top", marginLeft: "10px" }}>
+                <StatusList />
             </div>
         </div>
     );
