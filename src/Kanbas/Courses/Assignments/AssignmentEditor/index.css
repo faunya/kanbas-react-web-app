@@ -1,0 +1,17 @@
+.grey-button {
+    color: black;
+    border-color: grey;
+    border-style: solid;
+    background-color: #e8e8e8;
+}
+
+.grey-button:hover {
+    color: black;
+    border-color: grey;
+    border-style: solid;
+}
+
+.ed-button {
+    margin: 5px;
+}
+
