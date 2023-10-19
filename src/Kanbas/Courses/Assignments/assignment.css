@@ -16,3 +16,27 @@
     margin: 2px;
     outline: 1px;
 }
+
+.rounded-box {
+    border-radius: 10px;
+    border-style: solid;
+    color:black;
+    border-color: darkgrey;
+    display: inline-block;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.green-icon {
+    color: green;
+}
+
+.ass-icon {
+    margin: 20px;
+}
+
+.ass-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
