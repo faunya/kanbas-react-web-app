@@ -1,8 +1,10 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import db from "../../Database";
-import Button from 'react-bootstrap/Button';
+import {Form , Button} from 'react-bootstrap';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import "./assignment.css"
 
 function Assignments() {
     const { courseId } = useParams();
@@ -13,13 +15,30 @@ function Assignments() {
         <div>
             <h2>Assignments for course {courseId}</h2>
 
-            <div className="row" >
+            <div className="row ass-buttons" >
                 <div>
-                    <Button className="grey-button float-end" variant="light">Primary</Button>
-                    <Button className="grey-button float-end" variant="danger">Primary</Button>
-                    <Button className="grey-button float-end" variant="light">Primary</Button>
-                    <Button className="grey-button float-end" variant="light">Primary</Button>
-                    <Button className="grey-button float-end" variant="light">Primary</Button>
+                    <Form.Control
+                        type="text"
+                        placeholder="Search for Assignment"
+                        id="inputPassword5"
+                        aria-describedby="passwordHelpBlock"
+                        style={{width:"300px" , margin:"2px"}}
+                        className="float-start"
+                    />
+
+                    <Button className="grey-button float-end ass-button" variant="light">
+                        <FontAwesomeIcon icon="fa fa-ellipsis-v"></FontAwesomeIcon>
+                    </Button>
+
+                    <Button className="float-end ass-button" variant="danger">
+                        <FontAwesomeIcon icon="fa-solid fa-plus" />
+                        Assignment
+                    </Button>
+
+                    <Button className="grey-button float-end ass-button" variant="light">
+                        <FontAwesomeIcon icon="fa-solid fa-plus" />
+                        Group
+                    </Button>
                 </div>
             </div>
 

@@ -20,7 +20,7 @@ function Courses() {
     const curPage = split.pop();
     const courseURL = split.join("/");
     const homeURL = courseURL.concat("/")
-
+//, verticalAlign: "top", width: "91%" 
     return (
         <div>
             <div style={{ "margin": "25px" }}>
@@ -30,24 +30,27 @@ function Courses() {
                     <Breadcrumb.Item active>{curPage}</Breadcrumb.Item>
                 </Breadcrumb>
                 <hr />
-                
-                <div style={{ display: "inline-block", width: "9%" }}>
-                    <CourseNavigation />
+
+                <div className="row">
+                    <div className="col-1" style={{ display: "inline-block"}}>
+                        <CourseNavigation />
+                    </div>
+                    <div className="col-11" style={{ display: "inline-block"}}>
+                        <Routes>
+                            <Route path="/" element={<Navigate to="Home" />} />
+                            <Route path="Home" element={<Home />} />
+                            <Route path="Modules" element={<Modules />} />
+                            <Route path="Assignments" element={<Assignments />} />
+                            <Route
+                                path="Assignments/:assignmentId"
+                                element={<h1>Assignment Editor</h1>}
+                            />
+                            <Route path="Grades" element={<h1>Grades</h1>} />
+                        </Routes>
+                    </div>
 
                 </div>
-                <div style={{ display: "inline-block", left: "320px", verticalAlign: "top", width: "91%" }}>
-                    <Routes>
-                        <Route path="/" element={<Navigate to="Home" />} />
-                        <Route path="Home" element={<Home />} />
-                        <Route path="Modules" element={<Modules />} />
-                        <Route path="Assignments" element={<Assignments />} />
-                        <Route
-                            path="Assignments/:assignmentId"
-                            element={<h1>Assignment Editor</h1>}
-                        />
-                        <Route path="Grades" element={<h1>Grades</h1>} />
-                    </Routes>
-                </div>
+
 
             </div>
         </div>

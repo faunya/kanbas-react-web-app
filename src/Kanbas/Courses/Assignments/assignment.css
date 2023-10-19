@@ -1,0 +1,18 @@
+.ass-buttons .grey-button {
+    color: black;
+    border-color: lightgrey;
+    border-style: solid;
+    background-color: #e8e8e8;
+}
+
+.ass-buttons .grey-button:hover {
+    color: black;
+    border-color: lightgrey;
+    border-style: solid;
+    
+}
+
+.ass-buttons .ass-button {
+    margin: 2px;
+    outline: 1px;
+}
