@@ -12,7 +12,6 @@ import DateStateVariable from "./DateStateVariable";
 import ObjectStateVariable from "./ObjectStateVariable";
 import ArrayStateVariable from "./ArrayStateVariable";
 import ParentStateComponent from "./ParentStateComponent";
-import ChildStateComponent from "./ChildStateComponent";
 
 const Assignment4 = () => {
   function sayHello() {
