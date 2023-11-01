@@ -52,24 +52,31 @@ function ModuleList() {
 
             <ul className="list-group" style={{ marginTop: "30px" }}>
                 <li className="list-group-item">
+                    <input
+                        className="margin-5"
+                        value={module.name}
+                        onChange={(e) =>
+                            dispatch(setModule({ ...module, name: e.target.value }))
+                        } /><br />
+                    <textarea
+                        className="margin-5"
+                        cols="100"
+                        value={module.description}
+                        onChange={(e) =>
+                            dispatch(setModule({ ...module, description: e.target.value }))
+                        } /><br />
+
+
                     <button
+                        className="margin-left-5 btn btn-success"
                         onClick={() => dispatch(addModule({ ...module, course: courseId }))}>
                         Add
                     </button>
                     <button
+                        className="margin-left-5 btn btn-primary"
                         onClick={() => dispatch(updateModule(module))}>
                         Update
                     </button>
-                    <input
-                        value={module.name}
-                        onChange={(e) =>
-                            dispatch(setModule({ ...module, name: e.target.value }))
-                        } />
-                    <textarea
-                        value={module.description}
-                        onChange={(e) =>
-                            dispatch(setModule({ ...module, description: e.target.value }))
-                        } />
                 </li>
 
                 {
@@ -78,12 +85,13 @@ function ModuleList() {
                         .map((module, index) => (
                             <li key={index} className="list-group-item module-item" style={{ marginBottom: "50px" }}>
                                 <button
-
+                                    className="float-end btn btn-primary margin-left-5"
                                     onClick={() => dispatch(setModule(module))}>
                                     Edit
                                 </button>
 
                                 <button
+                                    className="float-end btn btn-danger"
                                     onClick={() => dispatch(deleteModule(module._id))}>
                                     Delete
                                 </button>
