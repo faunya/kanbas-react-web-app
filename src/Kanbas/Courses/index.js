@@ -11,9 +11,9 @@ import AssignmentEditor from "./Assignments/AssignmentEditor";
 
 import "./course.css";
 
-function Courses() {
+function Courses({ courses }) {
     const { courseId } = useParams();
-    const course = db.courses.find((course) => course._id === courseId);
+    const course = courses.find((course) => course._id === courseId);
 
     // getting the course URL and creating the home URL
     const curUrl = window.location.href;
