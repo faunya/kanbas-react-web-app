@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import db from "../../Database";
 import { Dropdown, Button } from "react-bootstrap";
@@ -6,10 +6,20 @@ import { Dropdown, Button } from "react-bootstrap";
 import "./module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { useSelector, useDispatch } from "react-redux";
+import {
+    addModule,
+    deleteModule,
+    updateModule,
+    setModule,
+} from "./modulesReducer";
 
 function ModuleList() {
     const { courseId } = useParams();
-    const modules = db.modules;
+    const modules = useSelector((state) => state.modulesReducer.modules);
+    const module = useSelector((state) => state.modulesReducer.module);
+    const dispatch = useDispatch();
+
     return (
         <div>
             <div className="row" >
@@ -31,7 +41,7 @@ function ModuleList() {
                     </Dropdown>
 
                     <Button className="grey-button float-end mod-button" variant="light">
-                        <FontAwesomeIcon icon="fa-regular fa-circle-check" style={{ color: "green" , marginRight:"5px"}} />
+                        <FontAwesomeIcon icon="fa-regular fa-circle-check" style={{ color: "green", marginRight: "5px" }} />
                         View Progress
                     </Button>
                     <Button className="grey-button float-end mod-button" variant="light">Collapse All</Button>
@@ -39,12 +49,45 @@ function ModuleList() {
             </div>
 
             <hr />
+
             <ul className="list-group" style={{ marginTop: "30px" }}>
+                <li className="list-group-item">
+                    <button
+                        onClick={() => dispatch(addModule({ ...module, course: courseId }))}>
+                        Add
+                    </button>
+                    <button
+                        onClick={() => dispatch(updateModule(module))}>
+                        Update
+                    </button>
+                    <input
+                        value={module.name}
+                        onChange={(e) =>
+                            dispatch(setModule({ ...module, name: e.target.value }))
+                        } />
+                    <textarea
+                        value={module.description}
+                        onChange={(e) =>
+                            dispatch(setModule({ ...module, description: e.target.value }))
+                        } />
+                </li>
+
                 {
                     modules
                         .filter((module) => module.course === courseId)
                         .map((module, index) => (
                             <li key={index} className="list-group-item module-item" style={{ marginBottom: "50px" }}>
+                                <button
+
+                                    onClick={() => dispatch(setModule(module))}>
+                                    Edit
+                                </button>
+
+                                <button
+                                    onClick={() => dispatch(deleteModule(module._id))}>
+                                    Delete
+                                </button>
+
                                 <h3>{module.name}</h3>
                                 <p>{module.description}</p>
                             </li>
