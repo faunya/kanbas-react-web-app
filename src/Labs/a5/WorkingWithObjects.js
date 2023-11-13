@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function WorkingWithObjects() {
@@ -48,6 +48,7 @@ function WorkingWithObjects() {
             })}
                 value={assignment.title}
                 className="form-control mb-2" type="text" />
+
             <button onClick={updateTitle}
                 className="w-100 btn btn-primary mb-2">
                 Update Title to: {assignment.title}
