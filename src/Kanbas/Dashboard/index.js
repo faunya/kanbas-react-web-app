@@ -12,7 +12,7 @@ function Dashboard(
             <h1>Dashboard</h1>
             <hr />
 
-            <div style={{width:"20%"}}>
+            <div style={{ width: "20%" }}>
                 <h5>Course</h5>
                 <input value={course.name} className="form-control margin-5"
                     onChange={(e) => setCourse({ ...course, name: e.target.value })} />
@@ -35,16 +35,16 @@ function Dashboard(
             <h3>Published Courses (3)</h3>
             <hr />
             <div className="d-flex flex-row flex-wrap">
-                {courses.map((course) => (
+                {courses.map((c) => (
                     <div className="card , course-card" style={{ width: "290px" }}>
                         <img src={require('../Imgs/FYQtAnnaMAE3gdn.jpg')} className="card-img-top" alt="..."></img>
 
-                        <Link key={course._id} to={`/Kanbas/Courses/${course._id}`} className="list-group-item" style={{ padding: "10px" }}>
+                        <Link key={c._id} to={`/Kanbas/Courses/${c._id}`} className="list-group-item" style={{ padding: "10px" }}>
                             <button
                                 className="btn btn-primary"
                                 onClick={(event) => {
                                     event.preventDefault();
-                                    setCourse(course);
+                                    setCourse(c);
                                 }}>
                                 Edit
                             </button>
@@ -54,17 +54,17 @@ function Dashboard(
                                 className="btn btn-danger margin-left-5"
                                 onClick={(event) => {
                                     event.preventDefault();
-                                    deleteCourse(course._id);
+                                    deleteCourse(c._id);
                                 }}>
                                 Delete
                             </button>
 
                             <h5 className="card-title" style={{ fontWeight: "bold" }}>
-                                {course.number} {course.name}
+                                {c.number} {c.name}
                             </h5>
 
                             <p className="card-text" style={{ color: "grey" }}>
-                                {course.number}.{course.startDate}.{course.endDate}
+                                {c.number}.{c.startDate}.{c.endDate}
                             </p>
                         </Link>
                     </div>

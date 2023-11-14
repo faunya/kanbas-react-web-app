@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState , useEffect} from "react";
+import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -14,6 +14,7 @@ import "./KanbasNavigation/nav.css"; // optionally import CSS files as needed
 function Kanbas() {
   const [courses, setCourses] = useState([]);
   const URL = "http://localhost:4000/api/courses";
+
   const findAllCourses = async () => {
     const response = await axios.get(URL);
     setCourses(response.data);
@@ -27,15 +28,29 @@ function Kanbas() {
     startDate: "2023-09-10", endDate: "2023-12-15",
   });
 
-  const addNewCourse = () => {
-    setCourses([...courses, { ...course, _id: new Date().getTime().toString() }]);
+  const addNewCourse = async () => {
+    const response = await axios.post(URL, course);
+    setCourses([
+      response.data,
+      ...courses,
+    ]);
   };
 
-  const deleteCourse = (courseId) => {
+  const deleteCourse = async (courseId) => {
+    const response = await axios.delete(
+      `${URL}/${course._id}`
+    );
+
     setCourses(courses.filter((course) => course._id !== courseId));
   };
 
-  const updateCourse = () => {
+  const updateCourse = async () => {
+    const response = await axios.put(
+      `${URL}/${course._id}`,
+      course
+    );
+    console.log(course);
+
     setCourses(
       courses.map((c) => {
         if (c._id === course._id) {
