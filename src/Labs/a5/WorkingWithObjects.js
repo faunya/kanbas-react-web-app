@@ -10,7 +10,7 @@ function WorkingWithObjects() {
         completed: false,
         score: 0,
     });
-    const API_BASE = process.env.LAB5_API_BASE || "http://localhost:4000/a5";
+    const API_BASE = process.env.REACT_APP_LAB5_BASE || "http://localhost:4000/a5";
     const URL = `${API_BASE}/assignment`;
     const URL_TITLE = `${URL}/title`;
 
