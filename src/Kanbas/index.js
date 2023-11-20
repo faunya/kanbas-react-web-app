@@ -19,7 +19,7 @@ function Kanbas() {
   const URL = "http://localhost:4000/api/courses";
 
   const findAllCourses = async () => {
-    const response = await axios.get(URL);
+    const response = await axios.get(COURSES_URL);
     setCourses(response.data);
   };
   useEffect(() => {
