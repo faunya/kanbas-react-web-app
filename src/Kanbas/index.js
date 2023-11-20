@@ -13,10 +13,9 @@ import "./KanbasNavigation/nav.css"; // optionally import CSS files as needed
 
 function Kanbas() {
   const [courses, setCourses] = useState([]);
-  const API_BASE = process.env.REACT_APP_API_BASE;
-  const MODULES_URL = `${API_BASE}/modules`;
+  const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:4000/api";
   const COURSES_URL = `${API_BASE}/courses`;
-  const URL = "http://localhost:4000/api/courses";
+  //const URL = "http://localhost:4000/api/courses";
 
   const findAllCourses = async () => {
     const response = await axios.get(COURSES_URL);
