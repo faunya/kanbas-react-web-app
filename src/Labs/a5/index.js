@@ -3,7 +3,7 @@ import WorkingWithArrays from "./WorkingWithArrays";
 import WorkingWithObjects from "./WorkingWithObjects";
 
 function Assignment5() {
-    const API_BASE = process.env.LAB5_API_BASE || "http://localhost:4000/a5";
+    const API_BASE = process.env.LAB5_API_BASE;
     console.log(process.env.LAB5_API_BASE);
     const URL = `${API_BASE}/welcome`;
     return (
