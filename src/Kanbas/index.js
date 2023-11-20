@@ -14,8 +14,8 @@ import "./KanbasNavigation/nav.css"; // optionally import CSS files as needed
 function Kanbas() {
   const [courses, setCourses] = useState([]);
   const API_BASE = process.env.REACT_APP_API_BASE;
-  //const MODULES_URL = `${API_BASE}/modules`;
-  //const COURSES_URL = `${API_BASE}/courses`;F
+  const MODULES_URL = `${API_BASE}/modules`;
+  const COURSES_URL = `${API_BASE}/courses`;F
   const URL = "http://localhost:4000/api/courses";
 
   const findAllCourses = async () => {
@@ -32,7 +32,7 @@ function Kanbas() {
   });
 
   const addNewCourse = async () => {
-    const response = await axios.post(URL, course);
+    const response = await axios.post(COURSES_URL, course);
     setCourses([
       response.data,
       ...courses,
@@ -41,7 +41,7 @@ function Kanbas() {
 
   const deleteCourse = async (courseId) => {
     const response = await axios.delete(
-      `${URL}/${course._id}`
+      `${COURSES_URL}/${course._id}`
     );
 
     setCourses(courses.filter((course) => course._id !== courseId));
@@ -49,7 +49,7 @@ function Kanbas() {
 
   const updateCourse = async () => {
     const response = await axios.put(
-      `${URL}/${course._id}`,
+      `${COURSES_URL}/${course._id}`,
       course
     );
     console.log(course);
