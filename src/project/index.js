@@ -1,0 +1,24 @@
+import { Routes, Route, Navigate } from "react-router";
+import SignIn from "./users/signin";
+import Account from "./users/account";
+import Navigation from "./nav";
+
+function Project() {
+    return (
+        <div className="container-fluid row">
+            <div className="col-2">
+                <Navigation />
+            </div>
+            <div className="col-10">
+                <h1>Project</h1>
+                <Routes>
+                    <Route path="/" element={<Navigate to="project/signin" />} />
+                    <Route path="/signin" element={<SignIn />} />
+                    <Route path="/account" element={<Account />} />
+                </Routes>
+            </div>
+        </div>
+    );
+}
+
+export default Project;
