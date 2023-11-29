@@ -6,10 +6,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import KanbasNavigation from "./KanbasNavigation";
 import Dashboard from "./Dashboard";
 import Courses from "./Courses";
-import store from "./store";
 
-import Account from "../project/users/account";
-import Signin from "../project/users/signin";
+import store from "./store";
 
 import "./KanbasNavigation/nav.css"; // optionally import CSS files as needed
 
@@ -74,9 +72,6 @@ function Kanbas() {
         <div style={{ width: "100%" }}>
           <Routes>
             <Route path="/" element={<Navigate to="Dashboard" />} />
-            <Route path="/signin" element={<Signin />} />
-            <Route path="/account" element={<Account />} />
-
             <Route path="Account" element={<h1>Account</h1>} />
             <Route path="Dashboard" element={
               <Dashboard
@@ -89,7 +84,6 @@ function Kanbas() {
             <Route path="Courses/:courseId/*" element={
               <Courses courses={courses} />} />
             <Route path="Courses/" element={<Navigate to="RS101" />} />
-
           </Routes>
         </div>
       </div>
