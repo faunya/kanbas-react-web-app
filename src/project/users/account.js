@@ -1,6 +1,6 @@
 import * as client from "./client";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Account() {
     const [account, setAccount] = useState(null);
@@ -21,6 +21,14 @@ function Account() {
     return (
         <div className="w-50">
             <h1>Account</h1>
+            <button onClick={save}>
+                Save
+            </button>
+
+            <Link to="/project/admin/users" className="btn btn-warning w-100">
+                Users
+            </Link>
+
             {account && (
                 <div>
                     <input value={account.password}
