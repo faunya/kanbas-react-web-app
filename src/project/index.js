@@ -4,10 +4,12 @@ import Account from "./users/account";
 import UserTable from "./users/table";
 import Navigation from "./nav";
 import Signup from "./users/signup";
+import Nav from "../Nav";
 
 function Project() {
     return (
         <div className="container-fluid row">
+            <Nav />
             <div className="col-2">
                 <Navigation />
             </div>
