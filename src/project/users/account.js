@@ -3,18 +3,26 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 function Account() {
-    const [account, setAccount] = useState(null);
+    const [account, setAccount] = useState({ username: "", password: "", role: "USER" });
 
     const navigate = useNavigate();
 
     const save = async () => {
+        console.log(account);
         await client.updateUser(account);
     };
+
+    const signout = async () => {
+        await client.signout();
+        navigate("/project/signin");
+    };
+
 
     const fetchAccount = async () => {
         const account = await client.account();
         setAccount(account);
     };
+
     useEffect(() => {
         fetchAccount();
     }, []);
@@ -25,23 +33,27 @@ function Account() {
                 Save
             </button>
 
+            <button onClick={signout}>
+                Signout
+            </button>
+
             <Link to="/project/admin/users" className="btn btn-warning w-100">
                 Users
             </Link>
 
             {account && (
                 <div>
-                    <input value={account.password}
+                    <input placeholder="Password" type="password" value={account.password}
                         onChange={(e) => setAccount({
                             ...account,
                             password: e.target.value
                         })} />
-                    <input value={account.firstName}
+                    <input placeholder="First Name" value={account.firstName}
                         onChange={(e) => setAccount({
                             ...account,
                             firstName: e.target.value
                         })} />
-                    <input value={account.lastName}
+                    <input placeholder="Last Name" value={account.lastName}
                         onChange={(e) => setAccount({
                             ...account,
                             lastName: e.target.value
@@ -51,7 +63,7 @@ function Account() {
                             ...account,
                             dob: e.target.value
                         })} />
-                    <input value={account.email}
+                    <input placeholder="Email" type="email" value={account.email}
                         onChange={(e) => setAccount({
                             ...account,
                             email: e.target.value
