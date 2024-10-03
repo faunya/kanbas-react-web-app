@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 import Labs from "./Labs";
