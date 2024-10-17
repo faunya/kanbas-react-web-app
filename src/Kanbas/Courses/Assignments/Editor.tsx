@@ -1,4 +1,18 @@
+import { useLocation, useParams } from "react-router";
+import * as db from "../../Database";
+import { title } from "process";
+
 export default function AssignmentEditor() {
+    const { cid } = useParams();
+    const { pathname } = useLocation();
+    const assignments = db.assignments;
+
+    const pathArray = pathname.split("/");
+    const aid = pathArray[pathArray.length - 1];
+
+    const assignment = assignments.filter((assignment: any) => assignment._id === aid)[0];
+    console.log(assignment);
+
     return (
         <div id="wd-assignments-editor">
             <div id="wd-css-responsive-forms-2">
@@ -7,14 +21,14 @@ export default function AssignmentEditor() {
                         <label htmlFor="wd-name" className="col-form-label">
                             Assignment Name </label>
                         <div>
-                            <input id="wd-name" type="input" className="form-control" />
+                            <input id="wd-name" type="input" className="form-control" value={assignment.title}/>
                         </div>
                     </div>
 
                     <div className="mb-3 row">
                         <div>
                             <textarea className="form-control" rows={10} id="wd-description">
-                                The assignment is available online Submit a link to the landing page of
+                                {assignment.description}
                             </textarea>
                         </div>
                     </div>
@@ -26,7 +40,7 @@ export default function AssignmentEditor() {
 
                         <div className="col-sm-5">
                             <input type="text" className="form-control"
-                                id="wd-points" value={100} />
+                                id="wd-points" value={assignment.points} />
                         </div>
                     </div>
 
@@ -102,17 +116,17 @@ export default function AssignmentEditor() {
                                 <input className="form-control margin-10" value="Everyone" id="wd-assign-to" />
 
                                 <label htmlFor="wd-due-date" className="form-label margin-10" style={{ fontWeight: "bold" }}>Due</label> <br />
-                                <input type="date" value="2021-01-01" id="wd-due-date" className="form-control margin-10 " /><br />
+                                <input type="date" value={assignment.dueDate} id="wd-due-date" className="form-control margin-10 " /><br />
 
                                 <div className="row">
                                     <div className="col-sm-5" >
                                         <label htmlFor="wd-available-from" className="col-form-label">Available From</label>
-                                        <input type="date" value="2021-01-01" id="wd-available-from" className="form-control" />
+                                        <input type="date" value={assignment.availableDate} id="wd-available-from" className="form-control" />
                                     </div>
 
                                     <div className="col-sm-5" >
                                         <label htmlFor="wd-available-until" className="col-form-label">Until</label>
-                                        <input type="date" value="2021-01-01" id="wd-available-until" className="form-control" />
+                                        <input type="date" value="2021-01-02" id="wd-available-until" className="form-control" />
                                     </div>
                                 </div>
 
@@ -127,7 +141,7 @@ export default function AssignmentEditor() {
             </div>
 
             <hr />
-            <button className="btn btn-danger float-end "><a  className="save-btn" href="index.html">Save</a></button>
+            <button className="btn btn-danger float-end "><a className="save-btn" href="index.html">Save</a></button>
             <button className="btn btn-secondary float-end"><a className="cancel-btn" href="index.html">Cancel</a></button>
         </div>
     );
