@@ -34,6 +34,8 @@ import VariablesAndConstants from "./VariablesAndConstants";
 import VariableTypes from "./VariableTypes";
 
 export default function Lab3() {
+  console.log('Hello World!');
+  
   return (
     <div>
       <h2>Lab 3</h2>
@@ -83,7 +85,7 @@ export default function Lab3() {
 
       <PathParameters />
 
-      
+
     </div>
   );
 }
