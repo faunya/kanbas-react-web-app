@@ -9,9 +9,6 @@ export default function PeopleTable() {
 
     return (
         <div id="wd-people-table">
-
-
-
             <table className="table table-striped">
                 <thead>
                     <tr><th>Name</th><th>Login ID</th><th>Section</th><th>Role</th><th>Last Activity</th><th>Total Activity</th></tr>
