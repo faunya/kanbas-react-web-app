@@ -1,10 +1,8 @@
 import { BsGripVertical } from "react-icons/bs";
 import AssignmentButtons from "./AssignmentButtons";
-import LessonControlButtons from "../Modules/LessonControlButtons";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { useLocation, useParams } from "react-router";
 
-import * as db from "../../Database";
 import { useDispatch, useSelector } from "react-redux";
 import { addAssignment, deleteAssignment } from "./reducer";
 import IndiAssignControlButtons from "./IndiAssignControlButtons";
