@@ -5,18 +5,20 @@ import AssignmentControlButtons from "./AssignmentControlButtons";
 import { useLocation, useParams } from "react-router";
 
 import * as db from "../../Database";
+import { useDispatch, useSelector } from "react-redux";
+import { addAssignment } from "./reducer";
 
 export default function Assignments() {
     const { cid } = useParams();
     const { pathname } = useLocation();
-    const assignments = db.assignments;
+    const { assignments } = useSelector((state: any) => state.assignmentReducer);
+    const dispatch = useDispatch();
 
-    console.log(cid);
-    console.log(pathname);
 
     return (
         <div id="wd-assignments">
-            <AssignmentButtons /><br /><br /><br /><br />
+            <AssignmentButtons />
+            <br /><br /><br /><br />
             <ul id="wd-modules" className="list-group rounded-0">
                 <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
 

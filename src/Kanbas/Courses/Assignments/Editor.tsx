@@ -1,17 +1,28 @@
 import { useLocation, useParams } from "react-router";
 import * as db from "../../Database";
 import { title } from "process";
+import { useDispatch, useSelector } from "react-redux";
+import { addAssignment, updateAssignment } from "./reducer";
+import Assignments from ".";
+import { useState } from "react";
 
 export default function AssignmentEditor() {
     const { cid } = useParams();
     const { pathname } = useLocation();
-    const assignments = db.assignments;
+    const { assignments } = useSelector((state: any) => state.assignmentReducer);
+    const dispatch = useDispatch();
 
     const pathArray = pathname.split("/");
     const aid = pathArray[pathArray.length - 1];
 
-    const assignment = assignments.filter((assignment: any) => assignment._id === aid)[0];
-    console.log(assignment);
+    const lookup = assignments.filter((assignment: any) => assignment._id === aid)[0];
+
+    const [assignment, setAssignment] = useState(lookup ||
+    {
+        "title": "New Assignment",
+        "course": cid,
+        "points": 100,
+    });
 
     return (
         <div id="wd-assignments-editor">
@@ -21,13 +32,17 @@ export default function AssignmentEditor() {
                         <label htmlFor="wd-name" className="col-form-label">
                             Assignment Name </label>
                         <div>
-                            <input id="wd-name" type="input" className="form-control" value={assignment.title}/>
+                            <input id="wd-name" type="input" className="form-control"
+                                defaultValue={assignment.title}
+                                onChange={(e) =>
+                                    setAssignment({ ...assignment, title: e.target.value })} />
                         </div>
                     </div>
 
                     <div className="mb-3 row">
                         <div>
-                            <textarea className="form-control" rows={10} id="wd-description">
+                            <textarea className="form-control" rows={10} id="wd-description" onChange={(e) =>
+                                setAssignment({ ...assignment, description: e.target.value })}>
                                 {assignment.description}
                             </textarea>
                         </div>
@@ -141,8 +156,16 @@ export default function AssignmentEditor() {
             </div>
 
             <hr />
-            <button className="btn btn-danger float-end "><a className="save-btn" href="index.html">Save</a></button>
-            <button className="btn btn-secondary float-end"><a className="cancel-btn" href="index.html">Cancel</a></button>
+            <button className="btn btn-danger float-end " onClick={() => {
+                if (lookup) {
+                    dispatch(updateAssignment({...assignment}));
+                } else {
+                    dispatch(addAssignment({ ...assignment }));
+                }
+            }
+            }>
+                <a className="save-btn" href={"#/Kanbas/Courses/" + cid + "/Assignments"}>Save</a></button>
+            <button className="btn btn-secondary float-end"><a className="cancel-btn" href={"#/Kanbas/Courses/" + cid + "/Assignments"}>Cancel</a></button>
         </div>
     );
 }
