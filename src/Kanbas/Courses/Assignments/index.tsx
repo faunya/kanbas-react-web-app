@@ -6,7 +6,8 @@ import { useLocation, useParams } from "react-router";
 
 import * as db from "../../Database";
 import { useDispatch, useSelector } from "react-redux";
-import { addAssignment } from "./reducer";
+import { addAssignment, deleteAssignment } from "./reducer";
+import IndiAssignControlButtons from "./IndiAssignControlButtons";
 
 export default function Assignments() {
     const { cid } = useParams();
@@ -50,7 +51,9 @@ export default function Assignments() {
                                         </span>
 
                                     </span>
-                                    <LessonControlButtons />
+                                    <IndiAssignControlButtons
+                                        assignmentId={assignment._id}
+                                        deleteAssignment={(assignmentId) => dispatch(deleteAssignment(assignmentId))} />
                                 </li>
 
                             ))}
