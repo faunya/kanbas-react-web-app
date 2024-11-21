@@ -1,6 +1,5 @@
 import ArrayStateVariable from "./ArrayStateVariable";
 import BooleanStateVariables from "./BooleanStateVariables";
-import ChildStateComponent from "./ChildStateComponent";
 import ClickEvent from "./ClickEvent";
 import Counter from "./Counter";
 import DateStateVariable from "./DateStateVariable";
@@ -33,6 +32,7 @@ export default function Lab4() {
             <ParentStateComponent />
 
             <ReduxExamples />
+
         </div>
     );
 }
