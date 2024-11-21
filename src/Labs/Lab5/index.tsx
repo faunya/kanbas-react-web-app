@@ -1,11 +1,14 @@
+import { useState } from "react";
 import EnvironmentVariables from "./EnvironmentVariables";
 import PathParameters from "./PathParameters";
 import QueryParameters from "./QueryParameters";
+import WorkingWithArrays from "./WorkingWithArrays";
 import WorkingWithObjects from "./WorkingWithObjects";
 
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 
 export default function Lab5() {
+
     return (
         <div id="wd-lab5">
             <h2>Lab 5</h2>
@@ -22,6 +25,7 @@ export default function Lab5() {
             <QueryParameters />
 
             <WorkingWithObjects />
+            <WorkingWithArrays />
         </div>
     );
 }
