@@ -4,6 +4,7 @@ import { title } from "process";
 import { useDispatch, useSelector } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
 import Assignments from ".";
+import * as assignmentsClient from "./client";
 
 import * as coursesClient from "../client";
 import { useState } from "react";
@@ -16,7 +17,6 @@ export default function AssignmentEditor() {
 
     const pathArray = pathname.split("/");
     const aid = pathArray[pathArray.length - 1];
-
     const lookup = assignments.filter((assignment: any) => assignment._id === aid)[0];
 
     const [assignment, setAssignment] = useState(lookup ||
@@ -32,6 +32,10 @@ export default function AssignmentEditor() {
         dispatch(addAssignment(newAssignment));
     };
 
+    const saveAssignment = async (assignment: any) => {
+        await assignmentsClient.updateAssignment(assignment);
+        dispatch(updateAssignment(module));
+      };
 
     return (
         <div id="wd-assignments-editor">
@@ -167,7 +171,7 @@ export default function AssignmentEditor() {
             <hr />
             <button className="btn btn-danger float-end " onClick={() => {
                 if (lookup) {
-                    dispatch(updateAssignment({ ...assignment }));
+                    saveAssignment(assignment);
                 } else {
                     createAssignmentForCourse();
                 }
