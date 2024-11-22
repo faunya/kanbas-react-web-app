@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteAssignment, setAssignments } from "./reducer";
 import IndiAssignControlButtons from "./IndiAssignControlButtons";
 import * as coursesClient from "../client";
+import * as assignmentsClient from "./client";
 import { useEffect } from "react";
 
 export default function Assignments() {
@@ -19,6 +20,11 @@ export default function Assignments() {
         const assignments = await coursesClient.findAssignmentsForCourse(cid as string);
         dispatch(setAssignments(assignments));
     };
+    const removeAssignment = async (assignmentId: string) => {
+        await assignmentsClient.deleteAssignment(assignmentId);
+        dispatch(deleteAssignment(assignmentId));
+      };
+    
 
     useEffect(() => {
         fetchAssignments();
@@ -60,7 +66,7 @@ export default function Assignments() {
                                     </span>
                                     <IndiAssignControlButtons
                                         assignmentId={assignment._id}
-                                        deleteAssignment={(assignmentId) => dispatch(deleteAssignment(assignmentId))} />
+                                        deleteAssignment={(assignmentId) => removeAssignment(assignment._id)} />
                                 </li>
 
                             ))}

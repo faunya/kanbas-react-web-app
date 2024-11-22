@@ -7,9 +7,10 @@ export default function IndiAssignControlButtons(
     { assignmentId, deleteAssignment }:
         {
             assignmentId: string;
-            deleteAssignment: (assignmentId: string) => void;
+            deleteAssignment: (aId: string) => void;
         }
 ) {
+    console.log(assignmentId);
     return (
         <div className="float-end">
             <FaTrash className="text-danger me-2 mb-1" data-bs-toggle="modal" data-bs-target="#wd-confirm-delete-dialog" />

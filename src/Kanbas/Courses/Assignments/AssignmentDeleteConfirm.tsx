@@ -5,7 +5,6 @@ export default function AssignmentDeleteConfirm({ assignmentId, deleteAssignment
         deleteAssignment: () => void;
     }
 ) {
-console.log(assignmentId);
     return (
         <div id="wd-confirm-delete-dialog" className="modal fade" data-bs-backdrop="static" data-bs-keyboard="false">
             <div className="modal-dialog">
