@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 
-import * as db from "../Database";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addEnrollment, deleteEnrollment } from "../Courses/People/reducer";
@@ -22,15 +21,7 @@ export default function Dashboard(
     const { currentUser } = useSelector((state: any) => state.accountReducer);
 
     const [displayAll, setDisplayAll] = useState(false);
-    const displayedCourses = displayAll ? courses :
-        courses.filter((course) =>
-            enrollments.some(
-                (enrollment: any) =>
-                    enrollment.user === currentUser._id &&
-                    enrollment.course === course._id
-            ));
-
-
+    const displayedCourses = displayAll ? courses : courses;
 
     return (
         <div id="wd-dashboard">
@@ -67,10 +58,11 @@ export default function Dashboard(
             <div id="wd-dashboard-courses" className="row">
                 <div className="row row-cols-1 row-cols-md-5 g-4">
 
-                    {displayedCourses
+                    {courses
                         .map((course) => (
                             <div className="wd-dashboard-course col" style={{ width: "300px" }}>
                                 <div className="card rounded-3 overflow-hidden">
+
                                     <Link to={`/Kanbas/Courses/${course._id}/Home`}
                                         className="wd-dashboard-course-link text-decoration-none text-dark" >
                                         <img src={course.image} width="100%" height={160} />
@@ -95,7 +87,6 @@ export default function Dashboard(
                                                             dispatch(deleteEnrollment(
                                                                 enrollments.filter((a: any) => (a.course == course._id && a.user == currentUser._id))[0]._id
                                                             ));
-                                                            console.log(enrollments);
                                                         }}
                                                         id="wd-delete-course-click">
                                                         Unenroll
@@ -106,7 +97,7 @@ export default function Dashboard(
                                                         className="btn btn-success float-end"
                                                         onClick={(event) => {
                                                             event.preventDefault();
-                                                            dispatch(addEnrollment({"course": course._id, "user" : currentUser._id}));
+                                                            dispatch(addEnrollment({ "course": course._id, "user": currentUser._id }));
                                                         }}
                                                         id="wd-delete-course-click">
                                                         Enroll
