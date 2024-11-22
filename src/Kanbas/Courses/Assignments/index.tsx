@@ -4,8 +4,10 @@ import AssignmentControlButtons from "./AssignmentControlButtons";
 import { useLocation, useParams } from "react-router";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addAssignment, deleteAssignment } from "./reducer";
+import { deleteAssignment, setAssignments } from "./reducer";
 import IndiAssignControlButtons from "./IndiAssignControlButtons";
+import * as coursesClient from "../client";
+import { useEffect } from "react";
 
 export default function Assignments() {
     const { cid } = useParams();
@@ -13,6 +15,14 @@ export default function Assignments() {
     const { assignments } = useSelector((state: any) => state.assignmentReducer);
     const dispatch = useDispatch();
 
+    const fetchAssignments = async () => {
+        const assignments = await coursesClient.findAssignmentsForCourse(cid as string);
+        dispatch(setAssignments(assignments));
+    };
+
+    useEffect(() => {
+        fetchAssignments();
+    }, []);
 
     return (
         <div id="wd-assignments">
@@ -31,7 +41,6 @@ export default function Assignments() {
                     <ul className="wd-lessons list-group rounded-0">
 
                         {assignments
-                            .filter((assignment: any) => assignment.course === cid)
                             .map((assignment: any) => (
                                 <li className="wd-lesson wd-assignment-list-item list-group-item p-3 ps-1">
                                     <BsGripVertical className="me-2 fs-3" />
