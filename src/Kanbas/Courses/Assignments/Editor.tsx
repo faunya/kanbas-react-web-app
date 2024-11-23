@@ -1,9 +1,6 @@
 import { useLocation, useParams } from "react-router";
-import * as db from "../../Database";
-import { title } from "process";
 import { useDispatch, useSelector } from "react-redux";
 import { addAssignment, updateAssignment } from "./reducer";
-import Assignments from ".";
 import * as assignmentsClient from "./client";
 
 import * as coursesClient from "../client";

@@ -41,8 +41,6 @@ export default function Modules() {
         dispatch(updateModule(module));
     };
 
-
-
     useEffect(() => {
         fetchModules();
     }, []);

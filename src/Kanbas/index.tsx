@@ -22,6 +22,8 @@ export default function Kanbas() {
     startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
   });
 
+  const [displayAll, setDisplayAll] = useState(false);
+
   const addNewCourse = async () => {
     const newCourse = await userClient.createCourse(course);
     console.log(newCourse);
@@ -50,14 +52,15 @@ export default function Kanbas() {
   const fetchCourses = async () => {
     try {
       const courses = await userClient.findMyCourses();
-      setCourses(courses);
+      const allCourses = await courseClient.fetchAllCourses();
+      setCourses(displayAll ? allCourses : courses);
     } catch (error) {
       console.error(error);
     }
   };
   useEffect(() => {
     fetchCourses();
-  }, [currentUser]);
+  }, [currentUser, displayAll]);
 
   return (
     <Session>
@@ -77,7 +80,9 @@ export default function Kanbas() {
                   setCourse={setCourse}
                   addNewCourse={addNewCourse}
                   deleteCourse={deleteCourse}
-                  updateCourse={updateCourse} /></ProtectedRoute>} />
+                  updateCourse={updateCourse} 
+                  setDisplayAll={setDisplayAll}
+                  displayAll={displayAll}/></ProtectedRoute>} />
               <Route path="/Courses/:cid/*" element={<ProtectedRoute><Courses courses={courses} /></ProtectedRoute>} />
               <Route path="/Calendar" element={<h1>Calendar</h1>} />
               <Route path="/Inbox" element={<h1>Inbox</h1>} />

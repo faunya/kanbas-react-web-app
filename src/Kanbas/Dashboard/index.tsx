@@ -1,32 +1,52 @@
 import { Link } from "react-router-dom";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addEnrollment, deleteEnrollment } from "../Courses/People/reducer";
+import { addEnrollment, deleteEnrollment , setEnrollments} from "../Courses/People/reducer";
+import * as userClient from "../Account/client";
 
 export default function Dashboard(
     { courses, course, setCourse, addNewCourse,
-        deleteCourse, updateCourse }: {
+        deleteCourse, updateCourse , setDisplayAll , displayAll}: {
             courses: any[];
             course: any;
             setCourse: (course: any) => void;
             addNewCourse: () => void;
             deleteCourse: (course: any) => void;
             updateCourse: () => void;
+            setDisplayAll: (display: any) => void;
+            displayAll: any;
         }) {
 
     const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
     const dispatch = useDispatch();
 
+    const fetchEnrollments = async () => {
+        const modules = await userClient.findMyEnrollments();
+        dispatch(setEnrollments(modules));
+    };
+
+    const enrollCourse = async (course: any) => {
+        const newEnrollment = await userClient.enrollCourse(course);
+        dispatch(addEnrollment(newEnrollment));
+    };
+
+    const unenrollCourse = async (course: any) => {
+        const enrollmentId = enrollments.filter((a: any) => (a.course === course._id && a.user === currentUser._id))[0]._id;
+        await userClient.unenrollCourse(enrollmentId);
+        dispatch(deleteEnrollment(enrollmentId));
+    };
+
     const { currentUser } = useSelector((state: any) => state.accountReducer);
 
-    const [displayAll, setDisplayAll] = useState(false);
-    const displayedCourses = displayAll ? courses : courses;
+    useEffect(() => {
+        fetchEnrollments();
+    }, [enrollments]);
 
     return (
         <div id="wd-dashboard">
             <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
-            {(currentUser.role == 'FACULTY') &&
+            {(currentUser.role === 'FACULTY') &&
                 <div>
                     <h5>New Course
                         <button className="btn btn-primary float-end"
@@ -50,9 +70,11 @@ export default function Dashboard(
 
             <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
             {
-                currentUser.role == "STUDENT" &&
+                currentUser.role === "STUDENT" &&
                 <button id="switch-display-courses" className="btn btn-primary float-end"
-                    onClick={() => { displayAll ? setDisplayAll(false) : setDisplayAll(true) }}> Enrollments </button>
+                    onClick={() => { (displayAll ? setDisplayAll(false) : setDisplayAll(true));
+                        (console.log(displayAll))
+                     }}> Enrollments </button>
 
             }
             <div id="wd-dashboard-courses" className="row">
@@ -74,7 +96,7 @@ export default function Dashboard(
 
                                             <button className="btn btn-primary"> Go </button>
 
-                                            {currentUser.role == 'STUDENT' && (
+                                            {currentUser.role === 'STUDENT' && (
                                                 (enrollments.some(
                                                     (enrollment: any) =>
                                                         enrollment.user === currentUser._id &&
@@ -84,9 +106,7 @@ export default function Dashboard(
                                                         className="btn btn-danger float-end"
                                                         onClick={(event) => {
                                                             event.preventDefault();
-                                                            dispatch(deleteEnrollment(
-                                                                enrollments.filter((a: any) => (a.course == course._id && a.user == currentUser._id))[0]._id
-                                                            ));
+                                                            unenrollCourse(course);
                                                         }}
                                                         id="wd-delete-course-click">
                                                         Unenroll
@@ -97,14 +117,14 @@ export default function Dashboard(
                                                         className="btn btn-success float-end"
                                                         onClick={(event) => {
                                                             event.preventDefault();
-                                                            dispatch(addEnrollment({ "course": course._id, "user": currentUser._id }));
+                                                            enrollCourse(course);
                                                         }}
                                                         id="wd-delete-course-click">
                                                         Enroll
                                                     </button>
                                             )}
                                             {
-                                                (currentUser.role == 'FACULTY') &&
+                                                (currentUser.role === 'FACULTY') &&
                                                 <button onClick={(event) => {
                                                     event.preventDefault();
                                                     deleteCourse(course._id);
@@ -115,7 +135,7 @@ export default function Dashboard(
                                             }
 
                                             {
-                                                (currentUser.role == 'FACULTY') &&
+                                                (currentUser.role === 'FACULTY') &&
                                                 <button id="wd-edit-course-click"
                                                     onClick={(event) => {
                                                         event.preventDefault();
