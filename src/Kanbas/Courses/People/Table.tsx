@@ -1,6 +1,11 @@
 import { FaUserCircle } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import * as db from "../../Database";
 
-export default function PeopleTable({ users = [] }: { users?: any[] }) {
+export default function PeopleTable() {
+
+    const { cid } = useParams();
+    const { users, enrollments } = db;
 
     return (
         <div id="wd-people-table">
@@ -10,6 +15,9 @@ export default function PeopleTable({ users = [] }: { users?: any[] }) {
                 </thead>
                 <tbody>
                     {users
+                        .filter((usr) =>
+                            enrollments.some((enrollment) => enrollment.user === usr._id && enrollment.course === cid)
+                        )
                         .map((user: any) => (
                             <tr key={user._id}>
                                 <td className="wd-full-name text-nowrap">
