@@ -9,7 +9,6 @@ import * as client from "./client";
 
 import { FaAlignJustify } from "react-icons/fa";
 import PeopleTable from "./People/Table";
-import { users } from "../Database";
 import { useEffect, useState } from "react";
 
 export default function Courses({ courses }: { courses: any[]; }) {
