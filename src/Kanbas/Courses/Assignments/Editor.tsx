@@ -143,17 +143,21 @@ export default function AssignmentEditor() {
                                 <input className="form-control margin-10" value="Everyone" id="wd-assign-to" />
 
                                 <label htmlFor="wd-due-date" className="form-label margin-10" style={{ fontWeight: "bold" }}>Due</label> <br />
-                                <input type="date" value={assignment.dueDate} id="wd-due-date" className="form-control margin-10 " /><br />
+                                <input type="date" defaultValue={assignment.dueDate} id="wd-due-date" className="form-control margin-10 "
+                                    onChange={(e) =>
+                                        setAssignment({ ...assignment, dueDate: e.target.value })} /><br />
 
                                 <div className="row">
                                     <div className="col-sm-5" >
                                         <label htmlFor="wd-available-from" className="col-form-label">Available From</label>
-                                        <input type="date" value={assignment.availableDate} id="wd-available-from" className="form-control" />
+                                        <input type="date" defaultValue={assignment.availableDate} id="wd-available-from" className="form-control"
+                                            onChange={(e) =>
+                                                setAssignment({ ...assignment, availableDate: e.target.value })} />
                                     </div>
 
                                     <div className="col-sm-5" >
                                         <label htmlFor="wd-available-until" className="col-form-label">Until</label>
-                                        <input type="date" value="2021-01-02" id="wd-available-until" className="form-control" />
+                                        <input type="date" defaultValue="2021-01-02" id="wd-available-until" className="form-control" />
                                     </div>
                                 </div>
 
