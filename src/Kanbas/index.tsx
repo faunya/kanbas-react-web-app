@@ -21,12 +21,11 @@ export default function Kanbas() {
     _id: "1234", name: "New Course", number: "New Number",
     startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
   });
-
+  const [enrolling, setEnrolling] = useState<boolean>(true);
   const [displayAll, setDisplayAll] = useState(true);
 
   const addNewCourse = async () => {
     const newCourse = await courseClient.createCourse(course);
-    console.log(newCourse);
     setCourses([...courses, newCourse]);
   };
 
@@ -37,7 +36,6 @@ export default function Kanbas() {
 
   const updateCourse = async () => {
     await courseClient.updateCourse(course);
-
     setCourses(
       courses.map((c) => {
         if (c._id === course._id) {
@@ -49,19 +47,61 @@ export default function Kanbas() {
     );
   };
 
-  const fetchCourses = async () => {
+  const updateEnrollment = async (courseId: string, enrolled: boolean) => {
+    if (enrolled) {
+      await userClient.enrollIntoCourse(currentUser._id, courseId);
+    } else {
+      await userClient.unenrollFromCourse(currentUser._id, courseId);
+    }
+    setCourses(
+      courses.map((course) => {
+        if (course._id === courseId) {
+          return { ...course, enrolled: enrolled };
+        } else {
+          return course;
+        }
+      })
+    );
+  };
+
+  const findCoursesForUser = async () => {
     try {
-      const courses = await courseClient.fetchAllCourses()//userClient.findMyCourses();
-      const allCourses = await courseClient.fetchAllCourses();
-      setCourses(displayAll ? allCourses : courses);
-      console.log(courses)
+      const courses = await userClient.findCoursesForUser(currentUser._id);
+      setCourses(courses);
     } catch (error) {
       console.error(error);
     }
   };
+
+  const fetchCourses = async () => {
+    try {
+      const allCourses = await courseClient.fetchAllCourses();
+      const enrolledCourses = await userClient.findCoursesForUser(
+        currentUser._id
+      );
+      console.log(enrolledCourses);
+      
+      const courses = allCourses.map((course: any) => {
+        if (enrolledCourses.find((c: any) => c._id === course._id)) {
+          return { ...course, enrolled: true };
+        } else {
+          return course;
+        }
+      });
+      
+      setCourses(courses);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    fetchCourses();
-  }, [currentUser, displayAll]);
+    if (enrolling) {
+      fetchCourses();
+    } else {
+      findCoursesForUser();
+    }
+  }, [currentUser, enrolling]);
 
   return (
     <Session>
@@ -81,9 +121,14 @@ export default function Kanbas() {
                   setCourse={setCourse}
                   addNewCourse={addNewCourse}
                   deleteCourse={deleteCourse}
-                  updateCourse={updateCourse} 
+                  updateCourse={updateCourse}
                   setDisplayAll={setDisplayAll}
-                  displayAll={displayAll}/></ProtectedRoute>} />
+                  displayAll={displayAll}
+                  enrolling={enrolling} setEnrolling={setEnrolling}
+                  updateEnrollment={updateEnrollment}
+                />
+              </ProtectedRoute>} />
+
               <Route path="/Courses/:cid/*" element={<ProtectedRoute><Courses courses={courses} /></ProtectedRoute>} />
               <Route path="/Calendar" element={<h1>Calendar</h1>} />
               <Route path="/Inbox" element={<h1>Inbox</h1>} />

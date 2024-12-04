@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addEnrollment, deleteEnrollment , setEnrollments} from "../Courses/People/reducer";
+import { addEnrollment, deleteEnrollment, setEnrollments } from "../Courses/People/reducer";
 import * as userClient from "../Account/client";
 
 export default function Dashboard(
     { courses, course, setCourse, addNewCourse,
-        deleteCourse, updateCourse , setDisplayAll , displayAll}: {
+        deleteCourse, updateCourse, setDisplayAll, displayAll, enrolling, setEnrolling, 
+        updateEnrollment 
+    }: {
             courses: any[];
             course: any;
             setCourse: (course: any) => void;
@@ -16,6 +18,9 @@ export default function Dashboard(
             updateCourse: () => void;
             setDisplayAll: (display: any) => void;
             displayAll: any;
+            enrolling: boolean;
+            setEnrolling: (enrolling: boolean) => void;
+            updateEnrollment: (courseId: string, enrolled: boolean) => void;
         }) {
 
     const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
@@ -45,7 +50,11 @@ export default function Dashboard(
 
     return (
         <div id="wd-dashboard">
-            <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+            <h1 id="wd-dashboard-title">Dashboard
+                <button onClick={() => setEnrolling(!enrolling)} className="float-end btn btn-primary" >
+                    {enrolling ? "My Courses" : "All Courses"}
+                </button>
+            </h1> <hr />
             {(currentUser.role === 'FACULTY') &&
                 <div>
                     <h5>New Course
@@ -72,9 +81,9 @@ export default function Dashboard(
             {
                 currentUser.role === "STUDENT" &&
                 <button id="switch-display-courses" className="btn btn-primary float-end"
-                    onClick={() => { (displayAll ? setDisplayAll(false) : setDisplayAll(true));
-                        (console.log(displayAll))
-                     }}> Enrollments </button>
+                    onClick={() => {
+                        (displayAll ? setDisplayAll(false) : setDisplayAll(true));
+                    }}> Enrollments </button>
 
             }
             <div id="wd-dashboard-courses" className="row">
@@ -88,11 +97,24 @@ export default function Dashboard(
                                     <Link to={`/Kanbas/Courses/${course._id}/Home`}
                                         className="wd-dashboard-course-link text-decoration-none text-dark" >
                                         <img src={course.image} width="100%" height={160} />
+
                                         <div className="card-body">
                                             <h5 className="wd-dashboard-course-title card-title">
+                                                {enrolling && (
+                                                    <button onClick={(event) => {
+                                                        event.preventDefault();
+                                                        updateEnrollment(course._id, !course.enrolled);
+                                                    }}
+                                                        className={`btn ${course.enrolled ? "btn-danger" : "btn-success"} float-end`} >
+                                                        {course.enrolled ? "Unenroll" : "Enroll"}
+                                                    </button>
+                                                )}
+
                                                 {course.name} </h5>
+
                                             <p className="wd-dashboard-course-title card-text overflow-y-hidden" style={{ maxHeight: 100 }}>
-                                                {course.description} </p>
+                                                {course.description}
+                                            </p>
 
                                             <button className="btn btn-primary"> Go </button>
 

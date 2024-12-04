@@ -19,7 +19,6 @@ const enrollmentsSlice = createSlice({
 
             };
             state.enrollments = [...state.enrollments, newEnrollment] as any;
-            console.log(newEnrollment);
         },
         deleteEnrollment: (state, { payload: enrollmentId }) => {
             state.enrollments = state.enrollments.filter(

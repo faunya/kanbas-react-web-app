@@ -5,9 +5,6 @@ export default function CoursesNavigation() {
     const { pathname } = useLocation();
     const pathPred = "/Kanbas/Courses/"
 
-    console.log(cid)
-    console.log(pathname)
-
     return (
         <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
 
