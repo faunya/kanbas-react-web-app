@@ -32,7 +32,7 @@ export default function AssignmentEditor() {
     const saveAssignment = async (assignment: any) => {
         await assignmentsClient.updateAssignment(assignment);
         dispatch(updateAssignment(module));
-      };
+    };
 
     return (
         <div id="wd-assignments-editor">
@@ -65,7 +65,9 @@ export default function AssignmentEditor() {
 
                         <div className="col-sm-5">
                             <input type="text" className="form-control"
-                                id="wd-points" value={assignment.points} />
+                                id="wd-points" defaultValue={assignment.points}
+                                onChange={(e) =>
+                                    setAssignment({ ...assignment, points: e.target.value })} />
                         </div>
                     </div>
 
