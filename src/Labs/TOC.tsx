@@ -67,6 +67,12 @@ export default function TOC() {
           Server Root Link
         </a>
       </li>
+      
+      <li className="nav-item">
+        <a id="wd-k" href="https://a6-kanbas-node-server-app-2lda.onrender.com/" className="nav-link">
+          A6 Server Root Link
+        </a>
+      </li>
     </ul>
   );
 }
