@@ -22,10 +22,10 @@ export default function Kanbas() {
     startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
   });
 
-  const [displayAll, setDisplayAll] = useState(false);
+  const [displayAll, setDisplayAll] = useState(true);
 
   const addNewCourse = async () => {
-    const newCourse = await userClient.createCourse(course);
+    const newCourse = await courseClient.createCourse(course);
     console.log(newCourse);
     setCourses([...courses, newCourse]);
   };
@@ -51,9 +51,10 @@ export default function Kanbas() {
 
   const fetchCourses = async () => {
     try {
-      const courses = await userClient.findMyCourses();
+      const courses = await courseClient.fetchAllCourses()//userClient.findMyCourses();
       const allCourses = await courseClient.fetchAllCourses();
       setCourses(displayAll ? allCourses : courses);
+      console.log(courses)
     } catch (error) {
       console.error(error);
     }
