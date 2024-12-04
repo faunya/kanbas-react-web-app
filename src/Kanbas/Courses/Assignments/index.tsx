@@ -66,7 +66,7 @@ export default function Assignments() {
                                     </span>
                                     <IndiAssignControlButtons
                                         assignmentId={assignment._id}
-                                        deleteAssignment={(assignmentId) => removeAssignment(assignment._id)} />
+                                        deleteAssignment={(assignmentId) => removeAssignment(assignmentId)} />
                                 </li>
 
                             ))}
