@@ -22,7 +22,7 @@ export default function Dashboard(
             setEnrolling: (enrolling: boolean) => void;
             updateEnrollment: (courseId: string, enrolled: boolean) => void;
         }) {
-
+/*
     const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
     const dispatch = useDispatch();
 
@@ -41,14 +41,14 @@ export default function Dashboard(
         const enrollmentId = enrollments.filter((a: any) => (a.course === course._id && a.user === currentUser._id))[0]._id;
         await userClient.unenrollCourse(enrollmentId);
         dispatch(deleteEnrollment(enrollmentId));
-    };
+    };*/
 
     const { currentUser } = useSelector((state: any) => state.accountReducer);
-
+/*
     useEffect(() => {
         fetchEnrollments();
     }, [enrollments]);
-
+*/
     return (
         <div id="wd-dashboard">
             <h1 id="wd-dashboard-title">Dashboard
@@ -118,33 +118,7 @@ export default function Dashboard(
 
                                             <button className="btn btn-primary"> Go </button>
 
-                                            {currentUser.role === 'STUDENT' && (
-                                                (enrollments.some(
-                                                    (enrollment: any) =>
-                                                        enrollment.user === currentUser._id &&
-                                                        enrollment.course === course._id
-                                                )) ?
-                                                    <button
-                                                        className="btn btn-danger float-end"
-                                                        onClick={(event) => {
-                                                            event.preventDefault();
-                                                            unenrollCourse(course);
-                                                        }}
-                                                        id="wd-delete-course-click">
-                                                        Unenroll
-                                                    </button>
-                                                    :
-
-                                                    <button
-                                                        className="btn btn-success float-end"
-                                                        onClick={(event) => {
-                                                            event.preventDefault();
-                                                            enrollCourse(course);
-                                                        }}
-                                                        id="wd-delete-course-click">
-                                                        Enroll
-                                                    </button>
-                                            )}
+                                            
                                             {
                                                 (currentUser.role === 'FACULTY') &&
                                                 <button onClick={(event) => {
