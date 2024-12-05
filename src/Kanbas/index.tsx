@@ -79,7 +79,6 @@ export default function Kanbas() {
       const enrolledCourses = await userClient.findCoursesForUser(
         currentUser._id
       );
-      console.log(allCourses);
       
       const courses = allCourses.map((course: any) => {
         if (enrolledCourses.find((c: any) => c._id === course._id)) {
@@ -96,6 +95,7 @@ export default function Kanbas() {
   };
 
   useEffect(() => {
+    console.log(currentUser);
     if (enrolling) {
       fetchCourses();
     } else {
