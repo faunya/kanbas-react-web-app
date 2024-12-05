@@ -89,8 +89,7 @@ export default function Dashboard(
             <div id="wd-dashboard-courses" className="row">
                 <div className="row row-cols-1 row-cols-md-5 g-4">
 
-                    {courses
-                        .map((course) => (
+                    {courses.map((course) => (
                             <div className="wd-dashboard-course col" style={{ width: "300px" }}>
                                 <div className="card rounded-3 overflow-hidden">
 

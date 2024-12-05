@@ -52,7 +52,6 @@ export const createAssignmentForCourse = async (courseId: string, assignment: an
         `${COURSES_API}/${courseId}/assignments`,
         assignment
     );
-    console.log(assignment);
     return response.data;
 };
 

@@ -46,8 +46,8 @@ export default function Assignments() {
 
                     <ul className="wd-lessons list-group rounded-0">
 
-                        {assignments
-                            .map((assignment: any) => (
+                        {assignments.map
+                            ((assignment: any) => (
                                 <li className="wd-lesson wd-assignment-list-item list-group-item p-3 ps-1">
                                     <BsGripVertical className="me-2 fs-3" />
 
