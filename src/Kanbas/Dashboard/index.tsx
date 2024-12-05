@@ -27,8 +27,9 @@ export default function Dashboard(
     const dispatch = useDispatch();
 
     const fetchEnrollments = async () => {
-        const modules = await userClient.findMyEnrollments();
-        dispatch(setEnrollments(modules));
+        const enrollments = await userClient.findMyEnrollments();
+        console.log(enrollments);
+        dispatch(setEnrollments(enrollments));
     };
 
     const enrollCourse = async (course: any) => {
