@@ -10,6 +10,9 @@ import * as client from "./client";
 import { FaAlignJustify } from "react-icons/fa";
 import PeopleTable from "./People/Table";
 import { useEffect, useState } from "react";
+import Quizzes from "./Quizzes";
+import QuizEditor from "./Quizzes/QuizEditor";
+import QuizDetails from "./Quizzes/Details";
 
 export default function Courses({ courses }: { courses: any[]; }) {
     const { cid } = useParams();
@@ -26,7 +29,7 @@ export default function Courses({ courses }: { courses: any[]; }) {
 
     useEffect(() => {
         findUsersForCourse();
-      }, []);
+    }, []);
 
     return (
         <div id="wd-courses">
@@ -49,9 +52,13 @@ export default function Courses({ courses }: { courses: any[]; }) {
                         <Route path="Assignments" element={<Assignments />} />
                         <Route path="Assignments/:aid" element={<AssignmentEditor />} />
                         <Route path="People" element={<PeopleTable users={users} />} />
+                        <Route path="Quizzes" element={< Quizzes />} />
+                        <Route path="Quizzes/edit/:qid" element={<QuizEditor />} />
+                        <Route path="Quizzes/:qid" element={<QuizDetails />} />
                     </Routes>
+
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
