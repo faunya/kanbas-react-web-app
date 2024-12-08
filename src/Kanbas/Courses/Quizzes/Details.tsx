@@ -41,8 +41,8 @@ export default function QuizDetails() {
                 <div className="d-flex justify-content-center">
                     <a className="btn btn-secondary text-center m-1"
                         href={"#/Kanbas/Courses/" + cid + "/Quizzes/preview/" + qid}>Preview</a>
-                    <a className="btn btn-secondary text-center m-1" 
-                    href={"#/Kanbas/Courses/" + cid + "/Quizzes/edit/" + qid}><FaPencil /> Edit</a>
+                    <a className="btn btn-secondary text-center m-1"
+                        href={"#/Kanbas/Courses/" + cid + "/Quizzes/edit/" + qid}><FaPencil /> Edit</a>
                 </div>}
 
             {(currentUser.role === 'STUDENT') &&
@@ -126,9 +126,9 @@ export default function QuizDetails() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{quiz.dueDate.slice(0,10)}</td>
-                        <td>{quiz.availableDate.slice(0,10)}</td>
-                        <td>{quiz.untilDate.slice(0,10)}</td>
+                        <td>{new Date(quiz.dueDate).toDateString()}</td>
+                        <td>{new Date(quiz.availableDate).toDateString()}</td>
+                        <td>{new Date(quiz.untilDate).toDateString()}</td>
                     </tr>
                 </tbody>
             </table>
