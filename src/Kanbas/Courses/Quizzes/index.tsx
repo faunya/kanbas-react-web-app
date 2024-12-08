@@ -7,13 +7,14 @@ import * as quizzesClient from "./client";
 import * as coursesClient from "../client";
 import { deleteQuiz, setQuizzes } from "./reducer";
 import { useEffect } from "react";
-import { FaTrash } from "react-icons/fa";
+import { FaEllipsisV, FaTrash } from "react-icons/fa";
 import GreenCheckmark from "../Modules/GreenCheckmark";
-import { IoEllipsisVertical } from "react-icons/io5";
+import { MdDoNotDisturb } from "react-icons/md";
 
 export default function Quizzes() {
     const { cid } = useParams();
     const { pathname } = useLocation();
+    const { currentUser } = useSelector((state: any) => state.accountReducer);
     const { quizzes } = useSelector((state: any) => state.quizReducer);
     const dispatch = useDispatch();
 
@@ -21,13 +22,17 @@ export default function Quizzes() {
         const quizzes = await coursesClient.findQuizzesForCourse(cid as string);
         dispatch(setQuizzes(quizzes));
     };
+
     const removeAssignment = async (quizId: string) => {
         await quizzesClient.deleteQuiz(quizId);
         dispatch(deleteQuiz(quizId));
     };
 
+    const curDate = new Date();
+
     useEffect(() => {
         fetchQuizzes();
+        console.log(curDate);
     }, []);
 
     return (
@@ -40,7 +45,6 @@ export default function Quizzes() {
                     <div id="wd-quizzes-title" className="wd-title p-3 ps-2 bg-secondary">
                         <BsGripVertical className="me-2 fs-3" />
                         <b>Quizzes</b>
-                        <span className="float-end rounded-border grey-border" style={{ marginRight: "10px" }}>40% of Total </span>
                     </div>
 
                     <ul className="wd-lessons list-group rounded-0">
@@ -57,19 +61,43 @@ export default function Quizzes() {
                                         </a><br />
 
                                         <span className="quiz-desc">
-                                            <span className="red-text">Multiple Modules </span>
-                                            | <b>Not available until</b> {quiz.availableDate} | <br />
+                                            <span className="red-text">Multiple Modules </span> |
+                                            {   //not available condition
+                                                (curDate < new Date(quiz.availableDate)) ?
+                                                    <span><b>Not available until</b> {new Date(quiz.availableDate).toDateString()} </span> :
+
+                                                    //available condition
+                                                    ((curDate >= new Date(quiz.availableDate)) &&
+                                                        (curDate < new Date(quiz.untilDate))) ?
+                                                        <span><b>Available</b></span> :
+
+                                                        //closed condition
+                                                        <span><b>Closed</b></span>
+                                            }
+                                            | <br />
                                             <b>Due</b> {quiz.dueDate} | {quiz.points} pts
                                         </span>
 
                                     </span>
 
-                                    <div className="float-end">
-                                        <FaTrash className="text-danger me-2 mb-1" onClick={() => removeAssignment(quiz._id)} />
-                                        <GreenCheckmark />
-                                        <IoEllipsisVertical className="fs-4" />
-                                    </div>
+                                    {
+                                        (currentUser.role === 'FACULTY') &&
+                                        <div className="float-end">
+                                            <div className="dropdown float-end">
+                                                <button id="wd-quiz-menu-dropdown" className="btn me-1assign-btn dropdown-toggle"
+                                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <FaEllipsisV />
+                                                </button>
+                                                <ul className="dropdown-menu">
+                                                    <li className="dropdown-item"><a href="#"></a></li>
+                                                </ul>
+                                            </div>
 
+                                            <FaTrash className="text-danger me-2 mb-1" onClick={() => removeAssignment(quiz._id)} />
+                                            {(quiz.published) ? <GreenCheckmark /> : <MdDoNotDisturb className="text-danger me-2 mb-1" />}
+                                        </div>
+
+                                    }
                                 </li>
 
                             ))}
