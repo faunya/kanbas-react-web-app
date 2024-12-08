@@ -62,6 +62,26 @@ export default function QuizEditor() {
                     </div>
 
                     <div className="mb-3 row">
+                        <label htmlFor="wd-quiz-type"
+                            className="col-sm-5 col-form-label assign-edit-label">
+                            Quiz Type </label>
+
+                        <div className="col-sm-5">
+                            <select className="form-select" id="wd-quiz-type"
+                                onChange={(e) =>
+                                    setQuiz({ ...quiz, quizType: e.target.value })}>
+
+                                <option selected={(quiz.quizType === "GRADED QUIZ"
+                                    || (quiz.quizType === null))} value="GRADED QUIZ">Graded Quiz</option>
+
+                                <option selected={quiz.quizType === "GRADED QUIZ"} value="PRACTICE QUIZ">Practice Quiz</option>
+                                <option selected={quiz.quizType === "GRADED QUIZ"} value="GRADED SURVEY">Graded Survey</option>
+                                <option selected={quiz.quizType === "GRADED QUIZ"} value="UNGRADED SURVEY">Ungraded Survey</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="mb-3 row">
                         <label htmlFor="wd-points"
                             className="col-sm-5 col-form-label assign-edit-label">
                             Points </label>
@@ -71,6 +91,26 @@ export default function QuizEditor() {
                                 id="wd-points" defaultValue={quiz.points}
                                 onChange={(e) =>
                                     setQuiz({ ...quiz, points: e.target.value })} />
+                        </div>
+                    </div>
+
+                    <div className="mb-3 row">
+                        <label htmlFor="wd-quiz-type"
+                            className="col-sm-5 col-form-label assign-edit-label">
+                            Assignment Group </label>
+
+                        <div className="col-sm-5">
+                            <select className="form-select" id="wd-quiz-type"
+                                onChange={(e) =>
+                                    setQuiz({ ...quiz, quizType: e.target.value })}>
+
+                                <option selected={(quiz.quizType === "GRADED QUIZ"
+                                    || (quiz.quizType === null))} value="GRADED QUIZ">Graded Quiz</option>
+
+                                <option selected={quiz.quizType === "GRADED QUIZ"} value="PRACTICE QUIZ">Practice Quiz</option>
+                                <option selected={quiz.quizType === "GRADED QUIZ"} value="GRADED SURVEY">Graded Survey</option>
+                                <option selected={quiz.quizType === "GRADED QUIZ"} value="UNGRADED SURVEY">Ungraded Survey</option>
+                            </select>
                         </div>
                     </div>
 
