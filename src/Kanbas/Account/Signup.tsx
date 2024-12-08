@@ -18,16 +18,10 @@ export default function Signup() {
 
         <div className="wd-signup-screen">
             <h1>Sign up</h1>
-            <input defaultValue={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })}
+            <input value={user.username} onChange={(e) => setUser({ ...user, username: e.target.value })}
                 className="wd-username form-control mb-2" placeholder="username" />
-            <input defaultValue={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} type="password"
+            <input value={user.password} onChange={(e) => setUser({ ...user, password: e.target.value })} type="password"
                 className="wd-password form-control mb-2" placeholder="password" />
-            <select className="form-select" aria-label="Default select example" onChange={(e) => setUser({ ...user, role: e.target.value })}>
-                <option selected value="STUDENT">Student</option>
-                <option value="FACULTY">Faculty</option>
-                <option value="TA">TA</option>
-                <option value="ADMIN">Admin</option>
-            </select>
             <button onClick={signup} className="wd-signup-btn btn btn-primary mb-2 w-100"> Sign up </button><br />
             <Link to="/Kanbas/Account/Signin" className="wd-signin-link">Sign in</Link>
         </div>

@@ -12,7 +12,7 @@ const assignmentsSlice = createSlice({
 
         addAssignment: (state, { payload: assignment }) => {
             const newAssignment: any = {
-                _id: assignment._id,
+                _id: new Date().getTime().toString(),
                 title: assignment.title,
                 course: assignment.course,
                 points: assignment.points,

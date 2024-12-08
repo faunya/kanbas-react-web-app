@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addEnrollment, deleteEnrollment, setEnrollments } from "../Courses/People/reducer";
+import * as userClient from "../Account/client";
 
 export default function Dashboard(
     { courses, course, setCourse, addNewCourse,
@@ -18,9 +22,33 @@ export default function Dashboard(
             setEnrolling: (enrolling: boolean) => void;
             updateEnrollment: (courseId: string, enrolled: boolean) => void;
         }) {
+/*
+    const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
+    const dispatch = useDispatch();
+
+    const fetchEnrollments = async () => {
+        const enrollments = await userClient.findMyEnrollments();
+        console.log(enrollments);
+        dispatch(setEnrollments(enrollments));
+    };
+
+    const enrollCourse = async (course: any) => {
+        const newEnrollment = await userClient.enrollCourse(course);
+        dispatch(addEnrollment(newEnrollment));
+    };
+
+    const unenrollCourse = async (course: any) => {
+        const enrollmentId = enrollments.filter((a: any) => (a.course === course._id && a.user === currentUser._id))[0]._id;
+        await userClient.unenrollCourse(enrollmentId);
+        dispatch(deleteEnrollment(enrollmentId));
+    };*/
 
     const { currentUser } = useSelector((state: any) => state.accountReducer);
-
+/*
+    useEffect(() => {
+        fetchEnrollments();
+    }, [enrollments]);
+*/
     return (
         <div id="wd-dashboard">
             <h1 id="wd-dashboard-title">Dashboard
@@ -51,14 +79,14 @@ export default function Dashboard(
             }
 
             <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
-            {/*
+            {
                 currentUser.role === "STUDENT" &&
                 <button id="switch-display-courses" className="btn btn-primary float-end"
                     onClick={() => {
                         (displayAll ? setDisplayAll(false) : setDisplayAll(true));
                     }}> Enrollments </button>
 
-            */}
+            }
             <div id="wd-dashboard-courses" className="row">
                 <div className="row row-cols-1 row-cols-md-5 g-4">
 
