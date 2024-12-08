@@ -5,6 +5,7 @@ import * as quizzesClient from "./client";
 
 import * as coursesClient from "../client";
 import { useState } from "react";
+import DefaultEditor, { Editor, EditorProvider } from "react-simple-wysiwyg";
 
 export default function QuizEditorDetails({ quiz, setQuiz, createQuizForCourse, saveQuiz }:
     {
@@ -18,6 +19,7 @@ export default function QuizEditorDetails({ quiz, setQuiz, createQuizForCourse, 
     const { quizzes } = useSelector((state: any) => state.quizReducer);
 
     const lookup = quizzes.filter((quiz: any) => quiz._id === qid)[0];
+    const [desc, setDesc] = useState(quiz.desc);
 
     return (
         <div id="wd-quizzes-editor">
@@ -36,10 +38,11 @@ export default function QuizEditorDetails({ quiz, setQuiz, createQuizForCourse, 
 
                     <div className="mb-3 row">
                         <div>
-                            <textarea className="form-control" rows={10} id="wd-description" onChange={(e) =>
-                                setQuiz({ ...quiz, description: e.target.value })}>
-                                {quiz.description}
-                            </textarea>
+                            <DefaultEditor value={desc}
+                                onChange={(e) => {
+                                    setDesc(e.target.value);
+                                    setQuiz({ ...quiz, desc: e.target.value });
+                                }} />
                         </div>
                     </div>
 
@@ -115,11 +118,13 @@ export default function QuizEditorDetails({ quiz, setQuiz, createQuizForCourse, 
                             Time Limit </label>
                         <div className="col-sm-5">
                             <div className="col-sm-5">
-                                <input className="form-check-input" type="checkbox" value="" id="wd-shuffle-ans"
+                                <input className="form-check-input" type="checkbox" id="wd-enable-time"
                                     defaultChecked={quiz.timeLimit != -1 || quiz.timeLimit === null}
                                     onChange={(e) => {
                                         if (!e.target.checked) {
-                                            setQuiz({ ...quiz, timeLimit: -1 })
+                                            setQuiz({ ...quiz, timeLimit: -1 });
+                                        } else {
+                                            setQuiz({ ...quiz, timeLimit: 20 });
                                         }
                                     }} />
                             </div>
@@ -127,6 +132,7 @@ export default function QuizEditorDetails({ quiz, setQuiz, createQuizForCourse, 
                             <input id="wd-time-limit" type="number" className="form-control"
                                 defaultValue={quiz.timeLimit}
                                 placeholder="Minutes"
+                                disabled={quiz.timeLimit === -1}
                                 onChange={(e) =>
                                     setQuiz({ ...quiz, timeLimit: e.target.value })} />
                         </div>
@@ -137,9 +143,17 @@ export default function QuizEditorDetails({ quiz, setQuiz, createQuizForCourse, 
                             className="col-sm-5 col-form-label assign-edit-label">
                             Multiple Attempts </label>
                         <div className="col-sm-5">
-                            <input className="form-check-input" type="checkbox" id="wd-shuffle-ans" defaultChecked={quiz.multiAttempt}
+                            <input className="form-check-input" type="checkbox" id="wd-shuffle-ans"
+                                defaultChecked={quiz.multiAttempt}
                                 onChange={(e) =>
                                     setQuiz({ ...quiz, multiAttempt: e.target.checked })} />
+
+                            <input id="wd-time-limit" type="number" className="form-control"
+                                defaultValue={quiz.numAttempt}
+                                placeholder="Number of attempts"
+                                onChange={(e) =>
+                                    setQuiz({ ...quiz, numAttempt: e.target.value })}
+                                disabled={!quiz.multiAttempt} />
                         </div>
                     </div>
 
@@ -148,7 +162,8 @@ export default function QuizEditorDetails({ quiz, setQuiz, createQuizForCourse, 
                             className="col-sm-5 col-form-label assign-edit-label">
                             Show Correct Answers </label>
                         <div className="col-sm-5">
-                            <input className="form-check-input" type="checkbox" id="wd-shuffle-ans" defaultChecked={quiz.showCorrectAnswers}
+                            <input className="form-check-input" type="checkbox" id="wd-shuffle-ans"
+                                defaultChecked={quiz.showCorrectAnswers}
                                 onChange={(e) =>
                                     setQuiz({ ...quiz, multiAttempt: e.target.checked })} />
                         </div>
@@ -161,9 +176,9 @@ export default function QuizEditorDetails({ quiz, setQuiz, createQuizForCourse, 
 
                         <div className="col-sm-5">
                             <input type="text" className="form-control"
-                                id="wd-points" defaultValue={quiz.points}
+                                id="wd-access-code" defaultValue={quiz.accessCode}
                                 onChange={(e) =>
-                                    setQuiz({ ...quiz, points: e.target.value })} />
+                                    setQuiz({ ...quiz, accessCode: e.target.value })} />
                         </div>
                     </div>
 

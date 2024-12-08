@@ -10,9 +10,12 @@ export default function QuizDetails() {
     const { quizzes } = useSelector((state: any) => state.quizReducer);
 
     const lookup = quizzes.filter((quiz: any) => quiz._id === qid)[0];
+    console.log(lookup);
     const [quiz, setQuiz] = useState(lookup ||
     {
         "title": "New Quiz",
+        "published": false,
+        "desc": "",
         "quizType": "Graded Quiz",
         "course": cid,
         "points": 100,

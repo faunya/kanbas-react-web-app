@@ -65,7 +65,7 @@ export default function Quizzes() {
                                     </span>
 
                                     <div className="float-end">
-                                        <FaTrash className="text-danger me-2 mb-1" data-bs-toggle="modal" data-bs-target="#wd-confirm-delete-dialog" />
+                                        <FaTrash className="text-danger me-2 mb-1" onClick={() => removeAssignment(quiz._id)} />
                                         <GreenCheckmark />
                                         <IoEllipsisVertical className="fs-4" />
                                     </div>

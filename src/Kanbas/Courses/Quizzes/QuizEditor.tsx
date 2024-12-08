@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useParams } from "react-router";
+import { Navigate, Route, Routes, useLocation, useParams } from "react-router";
 import QuizEditorDetails from "./QuizEditorDetails";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 
 export default function QuizEdtior() {
     const { cid, qid } = useParams();
+    const { pathname } = useLocation();
+
     const { quizzes } = useSelector((state: any) => state.quizReducer);
     const dispatch = useDispatch();
 
@@ -18,6 +20,8 @@ export default function QuizEdtior() {
     const [quiz, setQuiz] = useState(lookup ||
     {
         "title": "New Quiz",
+        "published": false,
+        "desc": "",
         "quizType": "Graded Quiz",
         "course": cid,
         "points": 100,
@@ -58,11 +62,17 @@ export default function QuizEdtior() {
 
             <ul className="nav nav-tabs">
                 <li className="nav-item">
-                    <Link className="nav-link active" aria-current="page" to="details">Active</Link>
+                    <Link aria-current="page" to="details"
+                        className={`nav-link  
+                        ${pathname.includes("details") ? "text-danger active" : "text-black"}`}>
+                        Details</Link>
                 </li>
 
                 <li className="nav-item">
-                    <Link className="nav-link" to="questions">Questions</Link>
+                    <Link to="questions"
+                        className={`nav-link  
+                        ${pathname.includes("questions") ? "text-danger active" : "text-black"}`}>
+                        Questions</Link>
                 </li>
             </ul>
 
