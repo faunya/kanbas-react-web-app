@@ -52,7 +52,7 @@ export default function Quizzes() {
 
                                     <span className="vertical-center" style={{ display: "inline-block" }}>
                                         <a className="wd-quiz-link"
-                                            href={"#" + pathname + "/" + quiz._id}>
+                                            href={"#" + pathname + "/details/" + quiz._id}>
                                             {quiz.title}
                                         </a><br />
 
