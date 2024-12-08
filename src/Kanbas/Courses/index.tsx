@@ -29,7 +29,7 @@ export default function Courses({ courses }: { courses: any[]; }) {
 
     useEffect(() => {
         findUsersForCourse();
-    }, []);
+      }, []);
 
     return (
         <div id="wd-courses">
@@ -57,9 +57,8 @@ export default function Courses({ courses }: { courses: any[]; }) {
                         <Route path="Quizzes/details/:qid" element={<QuizDetails />} />
                         <Route path="Quizzes/preview/:qid" element={<h1>Quiz preview</h1>} />
                     </Routes>
-
                 </div>
             </div>
-        </div >
+        </div>
     );
 }
