@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useState } from "react";
 import { FaPencil } from "react-icons/fa6";
+import parse from 'html-react-parser';
 
 export default function QuizDetails() {
     const { cid, qid } = useParams();
@@ -132,6 +133,9 @@ export default function QuizDetails() {
                     </tr>
                 </tbody>
             </table>
+
+            <h3>Description</h3>
+            <p>{parse(quiz.desc)}</p>
         </div>
     )
 }

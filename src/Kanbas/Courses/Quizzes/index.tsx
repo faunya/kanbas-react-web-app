@@ -61,7 +61,6 @@ export default function Quizzes() {
                                         </a><br />
 
                                         <span className="quiz-desc">
-                                            <span className="red-text">Multiple Modules </span> |
                                             {   //not available condition
                                                 (curDate < new Date(quiz.availableDate)) ?
                                                     <span><b>Not available until</b> {new Date(quiz.availableDate).toDateString()} </span> :
@@ -74,8 +73,13 @@ export default function Quizzes() {
                                                         //closed condition
                                                         <span><b>Closed</b></span>
                                             }
-                                            | <br />
-                                            <b>Due</b> {quiz.dueDate} | {quiz.points} pts
+
+                                            <span> | <b>Due</b> {new Date(quiz.dueDate).toDateString()} | 
+                                                {quiz.points} pts</span>
+                                            {
+                                                (currentUser.role === 'STUDENT') &&
+                                                <span> | <b>Score: </b> - </span>
+                                            }
                                         </span>
 
                                     </span>
