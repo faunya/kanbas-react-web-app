@@ -4,6 +4,10 @@ import { useLocation, useParams } from "react-router";
 import { FaPlus } from "react-icons/fa";
 
 import * as quizClient from "./client";
+import MultiChoice from "./Question/MultiChoice";
+import TrueFalse from "./Question/TrueFalse";
+import FillBlank from "./Question/FillBlank";
+import Question from "./Question/Question";
 
 export default function QuizEditorQuestions({ quiz, setQuiz, createQuizForCourse, saveQuiz }:
     {
@@ -15,8 +19,8 @@ export default function QuizEditorQuestions({ quiz, setQuiz, createQuizForCourse
     const { cid, qid } = useParams();
     const { pathname } = useLocation();
 
-    const [questions, setQuestions] = useState([]);
-    const [question, setQuestion] = useState({
+    const [questions, setQuestions] = useState<string[]>([]);
+    const newQuestionTemplate = {
         "title": "New Question",
         "questType": "MULTIPLE CHOICE",
         "points": 10,
@@ -32,7 +36,7 @@ export default function QuizEditorQuestions({ quiz, setQuiz, createQuizForCourse
         "blankAns": [],
 
         quiz: qid
-    });
+    };
 
     const lookup = async () => {
         try {
@@ -47,24 +51,28 @@ export default function QuizEditorQuestions({ quiz, setQuiz, createQuizForCourse
     }
 
     const createNewQuestion = async () => {
-        
+        if (qid) {
+            const newQuestion = await quizClient.createQuizForCourse(qid, newQuestionTemplate)
+            const newQuestions = [...questions, newQuestion];
+            setQuestions(newQuestions)
+            return newQuestion;
+        }
+        return;
     };
 
     useEffect(() => {
         lookup();
     }, [])
     return (
-        <div>Questions
+        <div>
 
             {questions.map
                 ((question: any) => (
-                    <div>
-                        {question.title}
-                    </div>
-
+                    <Question questData={question} />
                 ))}
             <div className="text-center">
-                <button className="btn btn-secondary me-1 float-center assign-btn">
+                <button className="btn btn-secondary me-1 float-center assign-btn"
+                    onClick={() => createNewQuestion()}>
                     <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                     New Question</button>
 

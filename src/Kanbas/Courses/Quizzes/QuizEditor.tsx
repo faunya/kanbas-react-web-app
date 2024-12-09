@@ -16,21 +16,8 @@ export default function QuizEdtior() {
     const { quizzes } = useSelector((state: any) => state.quizReducer);
     const dispatch = useDispatch();
 
-    const createQuizForCourse = async () => {
-        if (!cid) return;
-        const newQuiz = await coursesClient.createQuizForCourse(cid, quiz);
-        dispatch(addQuiz(newQuiz));
-        return newQuiz;
-    };
-
-    const saveQuiz = async (quiz: any) => {
-        await quizzesClient.updateQuiz(quiz);
-        dispatch(updateQuiz(quiz));
-    };
-
-    const lookup = quizzes.filter((quiz: any) => quiz._id === qid)[0];
-
-    const [quiz, setQuiz] = useState(lookup ||
+    const lookupQuiz = quizzes.filter((quiz: any) => quiz._id === qid)[0];
+    const [quiz, setQuiz] = useState(lookupQuiz ||
     {
         "title": "New Quiz",
         "published": false,
@@ -52,6 +39,20 @@ export default function QuizEdtior() {
         "availableDate": "2025-01-01",
         "untilDate": "2025-01-01",
     });
+
+    const createQuizForCourse = async () => {
+        if (!cid) return;
+        const newQuiz = await coursesClient.createQuizForCourse(cid, quiz);
+        dispatch(addQuiz(newQuiz));
+        return newQuiz;
+    };
+
+    const saveQuiz = async (quiz: any) => {
+        await quizzesClient.updateQuiz(quiz);
+        dispatch(updateQuiz(quiz));
+    };
+
+
 
     return (
         <div>
@@ -91,7 +92,7 @@ export default function QuizEdtior() {
 
             <hr />
             <button className="btn btn-danger float-end " onClick={() => {
-                if (lookup) {
+                if (lookupQuiz) {
                     saveQuiz(quiz);
                 } else {
                     createQuizForCourse();
