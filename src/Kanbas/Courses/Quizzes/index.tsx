@@ -74,8 +74,7 @@ export default function Quizzes() {
                                                         <span><b>Closed</b></span>
                                             }
 
-                                            <span> | <b>Due</b> {new Date(quiz.dueDate).toDateString()} | 
-                                                {quiz.points} pts</span>
+                                            <span> | <b>Due</b> {new Date(quiz.dueDate).toDateString()} | {quiz.points} pts | - Questons </span>
                                             {
                                                 (currentUser.role === 'STUDENT') &&
                                                 <span> | <b>Score: </b> - </span>
@@ -93,11 +92,21 @@ export default function Quizzes() {
                                                     <FaEllipsisV />
                                                 </button>
                                                 <ul className="dropdown-menu">
-                                                    <li className="dropdown-item"><a href="#"></a></li>
+                                                    <li className="dropdown-item">
+                                                        <a href={"#" + pathname + "/edit/" + quiz._id}>Edit</a>
+                                                    </li>
+                                                    <li className="dropdown-item">
+                                                        Publish
+                                                    </li>
+                                                    <li className="dropdown-item"
+
+                                                        onClick={() => {removeAssignment(quiz._id);
+                                                            console.log("clicked")
+                                                        }}>
+                                                            Delete
+                                                    </li>
                                                 </ul>
                                             </div>
-
-                                            <FaTrash className="text-danger me-2 mb-1" onClick={() => removeAssignment(quiz._id)} />
                                             {(quiz.published) ? <GreenCheckmark /> : <MdDoNotDisturb className="text-danger me-2 mb-1" />}
                                         </div>
 

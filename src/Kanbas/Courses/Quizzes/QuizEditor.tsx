@@ -1,12 +1,13 @@
 import { Navigate, Route, Routes, useLocation, useParams } from "react-router";
 import QuizEditorDetails from "./QuizEditorDetails";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addQuiz, updateQuiz } from "./reducer";
+import { addQuiz, deleteQuiz, updateQuiz } from "./reducer";
 
 import * as quizzesClient from "./client";
 import * as coursesClient from "../client";
 import { Link } from "react-router-dom";
+import QuizEditorQuestions from "./QuizEditorQuestions";
 
 export default function QuizEdtior() {
     const { cid, qid } = useParams();
@@ -14,6 +15,18 @@ export default function QuizEdtior() {
 
     const { quizzes } = useSelector((state: any) => state.quizReducer);
     const dispatch = useDispatch();
+
+    const createQuizForCourse = async () => {
+        if (!cid) return;
+        const newQuiz = await coursesClient.createQuizForCourse(cid, quiz);
+        dispatch(addQuiz(newQuiz));
+        return newQuiz;
+    };
+
+    const saveQuiz = async (quiz: any) => {
+        await quizzesClient.updateQuiz(quiz);
+        dispatch(updateQuiz(quiz));
+    };
 
     const lookup = quizzes.filter((quiz: any) => quiz._id === qid)[0];
 
@@ -40,19 +53,6 @@ export default function QuizEdtior() {
         "untilDate": "2025-01-01",
     });
 
-
-
-    const createQuizForCourse = async () => {
-        if (!cid) return;
-        const newQuiz = await coursesClient.createQuizForCourse(cid, quiz);
-        dispatch(addQuiz(newQuiz));
-    };
-
-    const saveQuiz = async (quiz: any) => {
-        await quizzesClient.updateQuiz(quiz);
-        dispatch(updateQuiz(quiz));
-    };
-
     return (
         <div>
             <div>
@@ -64,14 +64,14 @@ export default function QuizEdtior() {
                 <li className="nav-item">
                     <Link aria-current="page" to="details"
                         className={`nav-link  
-                        ${pathname.includes("details") ? "text-danger active" : "text-black"}`}>
+                        ${pathname.includes("details") ? "text-black active" : "text-danger"}`}>
                         Details</Link>
                 </li>
 
                 <li className="nav-item">
                     <Link to="questions"
                         className={`nav-link  
-                        ${pathname.includes("questions") ? "text-danger active" : "text-black"}`}>
+                        ${pathname.includes("questions") ? "text-black active" : "text-danger"}`}>
                         Questions</Link>
                 </li>
             </ul>
@@ -80,6 +80,11 @@ export default function QuizEdtior() {
                 <Route path="/" element={<Navigate to="details" />} />
                 <Route path="details" element={
                     <QuizEditorDetails
+                        quiz={quiz} setQuiz={setQuiz}
+                        saveQuiz={saveQuiz} createQuizForCourse={createQuizForCourse} />} />
+
+                <Route path="questions" element={
+                    <QuizEditorQuestions
                         quiz={quiz} setQuiz={setQuiz}
                         saveQuiz={saveQuiz} createQuizForCourse={createQuizForCourse} />} />
             </Routes>
@@ -94,6 +99,7 @@ export default function QuizEdtior() {
             }}>
                 <a className="save-btn" href={"#/Kanbas/Courses/" + cid + "/Quizzes"}>Save</a></button>
             <button className="btn btn-secondary float-end"><a className="cancel-btn" href={"#/Kanbas/Courses/" + cid + "/Quizzes"}>Cancel</a></button>
+
         </div>
     )
 }
