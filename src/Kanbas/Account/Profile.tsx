@@ -21,9 +21,9 @@ export default function Profile() {
     };
 
     const signout = async () => {
+        navigate("/Kanbas/Account/Signin");
         await client.signout();
         dispatch(setCurrentUser(null));
-        navigate("/Kanbas/Account/Signin");
     };
 
     useEffect(() => { fetchProfile(); }, []);

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaTrash } from "react-icons/fa";
 
 export default function MultiChoice({ question, setQuestion }: {
     question: any,
@@ -7,7 +7,7 @@ export default function MultiChoice({ question, setQuestion }: {
 }) {
     const [choices, setChoices] = useState(question.choices)
     const newChoiceTemplate = {
-        "id": new Date().getTime(),
+        "_id": new Date().getTime(),
         "answer": "",
         "correct": false
     };
@@ -24,7 +24,7 @@ export default function MultiChoice({ question, setQuestion }: {
 
     const updateCorrect = (correctChoice: any) => {
         const incorrectChoices = choices
-            .filter((c: any) => (c.id != correctChoice.id))
+            .filter((c: any) => (c._id != correctChoice._id))
 
         const falseChoices = incorrectChoices.map((c: any) => {
             c.correct = false;
@@ -35,21 +35,28 @@ export default function MultiChoice({ question, setQuestion }: {
 
     }
 
+    const deleteChoice = (choice: any) => {
+        const newChoices = choices.filter((c: any) => (c._id != choice._id));
+        updateChoices(newChoices);
+    }
+
     return (
         <div className="m-3">
             {choices.map(
                 (choice: any) => (
-                    <div className="row m-2">
+                    <div className="row">
                         <div className="col-sm-3">
                             <label htmlFor="wd-answer">Possible Answer: </label>
                         </div>
-                        <div className="col-lg">
+
+                        <div className="col-lg-6">
                             <input id="wd-answer" type="input" className="form-control"
                                 defaultValue={choice.answer}
                                 placeholder="Answer"
                                 onChange={(e) => {
-                                    choices.find((c: any) => c.id === choice.id)
+                                    choices.find((c: any) => c._id === choice._id)
                                         .answer = e.target.value;
+                                    console.log(choices)
                                 }
                                 } />
                         </div>
@@ -61,10 +68,13 @@ export default function MultiChoice({ question, setQuestion }: {
                                     choices.find((c: any) => c._id === choice._id)
                                         .correct = e.target.checked;
                                     //console.log(choices);
-                                    updateCorrect(choice);
+                                    updateCorrect(choices.find((c: any) => c._id === choice._id));
                                 }} />
+                        </div>
 
-
+                        <div className="col-sm-1">
+                            <FaTrash className="text-danger m-1 float-end"
+                                onClick={() => (deleteChoice(choice))} />
                         </div>
                     </div>
                 )

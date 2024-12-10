@@ -4,9 +4,6 @@ import { useLocation, useParams } from "react-router";
 import { FaPlus, FaTrash } from "react-icons/fa";
 
 import * as quizClient from "./client";
-import MultiChoice from "./Question/MultiChoice";
-import TrueFalse from "./Question/TrueFalse";
-import FillBlank from "./Question/FillBlank";
 import Question from "./Question/Question";
 
 export default function QuizEditorQuestions({ quiz, setQuiz, createQuizForCourse, saveQuiz }:
