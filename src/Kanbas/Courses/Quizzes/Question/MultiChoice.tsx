@@ -30,7 +30,7 @@ export default function MultiChoice({ question, setQuestion }: {
                         </div>
                         <div className="col-lg">
                             <input id="wd-answer" type="input" className="form-control"
-                                defaultValue={choice.answer}
+                                value={choice.answer}
                                 placeholder="Answer"
                                 onChange={(e) => (
                                     choices.find((c: any) => c._id === choice._id)
@@ -40,7 +40,7 @@ export default function MultiChoice({ question, setQuestion }: {
 
                         <div className="col-sm-2">
                             <label htmlFor="wd-correct">Correct: </label>
-                            <input className="form-check-input m-2" type="checkbox" id="wd-correct" defaultChecked={choice.correct}
+                            <input className="form-check-input m-2" type="checkbox" id="wd-correct" checked={choice.correct}
                                 onChange={(e) => (
                                     choices.find((c: any) => c._id === choice._id)
                                         .correct = e.target.checked

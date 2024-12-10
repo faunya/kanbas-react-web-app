@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MultiChoice from "./MultiChoice";
 import TrueFalse from "./TrueFalse";
 import FillBlank from "./FillBlank";
@@ -17,17 +17,23 @@ export default function Question({ questData, questions, setQuestions }: {
     const [desc, setDesc] = useState(question.question);
 
     const deleteQuestion = async (questionId: string) => {
-        //console.log(questions)
         await questionClient.deleteQuestion(questionId);
         setQuestions(questions.filter((q) => (q._id != question._id)));
     }
 
+    const resetChange = () => {
+        setQuestion(questData);
+        setDesc(questData.question);
+    }
+
+    useEffect(() => { }, [question, desc])
+
     return (
-        <div className="m-3">
+        <div className="m-3 form" id="question">
             <div className="grey-border m-2 row">
                 <div className="m-1 col-sm-3">
                     <input id="wd-name" type="input" className="form-control"
-                        defaultValue={question.title}
+                        value={question.title}
                         placeholder="Title"
                         onChange={(e) =>
                             setQuestion({ ...question, title: e.target.value })} />
@@ -49,14 +55,14 @@ export default function Question({ questData, questions, setQuestions }: {
                 <div className="m-1 col-sm-3 row float-end">
                     <div className="col float-end"><label htmlFor="wd-pts" className="col-form-label">Pts</label></div>
                     <div className="col">
-                        <input type="number" defaultValue={question.points} id="wd-pts" className="form-control"
+                        <input type="number" value={question.points} id="wd-pts" className="form-control"
                             onChange={(e) =>
                                 setQuestion({ ...question, points: e.target.value })} />
                     </div>
                 </div>
             </div>
 
-            <div className="grey-border m-2 overflow">
+            <div className="grey-border m-2">
                 <div className="row">
                     <div className="m-3">
                         <label htmlFor="wd-quest" className="col-form-label"><b>Question:</b></label>
@@ -73,8 +79,13 @@ export default function Question({ questData, questions, setQuestions }: {
                     : ((question.questType === "TRUE FALSE") ? <TrueFalse question={question} setQuestion={setQuestion} /> :
                         //Fill in blank
                         <FillBlank question={question} setQuestion={setQuestion} />)}
+
                 <FaTrash className="text-danger me-3 mb-1 float-end"
                     onClick={() => (deleteQuestion(question._id))} />
+
+                <button className="btn btn-secondary m-1" onClick={() => (resetChange())}>Cancel</button>
+                <button className="btn btn-danger m-1" >Save</button>
+
             </div>
 
 
