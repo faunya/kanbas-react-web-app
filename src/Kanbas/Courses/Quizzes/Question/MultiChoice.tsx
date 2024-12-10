@@ -12,12 +12,27 @@ export default function MultiChoice({ question, setQuestion }: {
         "correct": false
     };
 
-    const addNewChoice = () => {
-        setChoices([...choices, newChoiceTemplate]);
+    const updateChoices = (newChoices: any[]) => {
+        setChoices(newChoices);
+        setQuestion({ ...question, choices: newChoices });
     }
 
-    const updateQuestion = () => {
-        setQuestion({...question, choices: choices})
+    const addNewChoice = () => {
+        const newChoices = [...choices, newChoiceTemplate]
+        updateChoices(newChoices);
+    }
+
+    const updateCorrect = (correctChoice: any) => {
+        const incorrectChoices = choices
+            .filter((c: any) => (c.id != correctChoice.id))
+
+        const falseChoices = incorrectChoices.map((c: any) => {
+            c.correct = false;
+        });
+        const newChoices = incorrectChoices.push(correctChoice);
+        console.log(correctChoice);
+        //updateChoices(newChoices);
+
     }
 
     return (
@@ -30,21 +45,24 @@ export default function MultiChoice({ question, setQuestion }: {
                         </div>
                         <div className="col-lg">
                             <input id="wd-answer" type="input" className="form-control"
-                                value={choice.answer}
+                                defaultValue={choice.answer}
                                 placeholder="Answer"
-                                onChange={(e) => (
-                                    choices.find((c: any) => c._id === choice._id)
-                                        .answer = e.target.value
-                                )} />
+                                onChange={(e) => {
+                                    choices.find((c: any) => c.id === choice.id)
+                                        .answer = e.target.value;
+                                }
+                                } />
                         </div>
 
                         <div className="col-sm-2">
                             <label htmlFor="wd-correct">Correct: </label>
-                            <input className="form-check-input m-2" type="checkbox" id="wd-correct" checked={choice.correct}
-                                onChange={(e) => (
+                            <input className="form-check-input m-2" type="radio" name="wd-correct" defaultChecked={choice.correct}
+                                onChange={(e) => {
                                     choices.find((c: any) => c._id === choice._id)
-                                        .correct = e.target.checked
-                                )} />
+                                        .correct = e.target.checked;
+                                    //console.log(choices);
+                                    updateCorrect(choice);
+                                }} />
 
 
                         </div>

@@ -26,6 +26,19 @@ export default function Question({ questData, questions, setQuestions }: {
         setDesc(questData.question);
     }
 
+    const saveQuestion = async () => {
+        console.log(question);
+        await questionClient.updateQuestion(question);
+        setQuestions(
+            questions.map((q) => {
+                if (q._id === question._id) {
+                    return question;
+                } else {
+                    return q;
+                }
+            }));
+    }
+
     useEffect(() => { }, [question, desc])
 
     return (
@@ -84,7 +97,7 @@ export default function Question({ questData, questions, setQuestions }: {
                     onClick={() => (deleteQuestion(question._id))} />
 
                 <button className="btn btn-secondary m-1" onClick={() => (resetChange())}>Cancel</button>
-                <button className="btn btn-danger m-1" >Save</button>
+                <button className="btn btn-danger m-1" onClick={() => saveQuestion()}>Save</button>
 
             </div>
 
