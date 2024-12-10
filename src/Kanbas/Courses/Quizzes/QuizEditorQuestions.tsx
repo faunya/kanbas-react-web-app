@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
 
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaTrash } from "react-icons/fa";
 
 import * as quizClient from "./client";
 import MultiChoice from "./Question/MultiChoice";
@@ -19,7 +19,7 @@ export default function QuizEditorQuestions({ quiz, setQuiz, createQuizForCourse
     const { cid, qid } = useParams();
     const { pathname } = useLocation();
 
-    const [questions, setQuestions] = useState<string[]>([]);
+    const [questions, setQuestions] = useState<any[]>([]);
     const newQuestionTemplate = {
         "title": "New Question",
         "questType": "MULTIPLE CHOICE",
@@ -68,7 +68,8 @@ export default function QuizEditorQuestions({ quiz, setQuiz, createQuizForCourse
 
             {questions.map
                 ((question: any) => (
-                    <Question questData={question} />
+                    <Question questData={question} questions={questions} setQuestions={setQuestions} />
+
                 ))}
             <div className="text-center">
                 <button className="btn btn-secondary me-1 float-center assign-btn"

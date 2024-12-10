@@ -4,12 +4,23 @@ import TrueFalse from "./TrueFalse";
 import FillBlank from "./FillBlank";
 import { set } from "mongoose";
 import DefaultEditor from "react-simple-wysiwyg";
+import { FaTrash } from "react-icons/fa";
 
-export default function Question({ questData }: {
-    questData: any
+import * as questionClient from "./client";
+
+export default function Question({ questData, questions, setQuestions }: {
+    questData: any,
+    questions: any[],
+    setQuestions: (questions: any) => void
 }) {
     const [question, setQuestion] = useState(questData);
     const [desc, setDesc] = useState(question.question);
+
+    const deleteQuestion = async (questionId: string) => {
+        //console.log(questions)
+        await questionClient.deleteQuestion(questionId);
+        setQuestions(questions.filter((q) => (q._id != question._id)));
+    }
 
     return (
         <div className="m-3">
@@ -45,10 +56,10 @@ export default function Question({ questData }: {
                 </div>
             </div>
 
-            <div className="grey-border m-2">
+            <div className="grey-border m-2 overflow">
                 <div className="row">
                     <div className="m-3">
-                        <label htmlFor="wd-pts" className="col-form-label"><b>Question:</b></label>
+                        <label htmlFor="wd-quest" className="col-form-label"><b>Question:</b></label>
                         <DefaultEditor value={desc}
                             containerProps={{ style: { width: "95%" } }}
                             onChange={(e) => {
@@ -57,11 +68,13 @@ export default function Question({ questData }: {
                             }} />
                     </div>
                 </div>
-                
+
                 {(question.questType === "MULTIPLE CHOICE") ? <MultiChoice question={question} setQuestion={setQuestion} />
                     : ((question.questType === "TRUE FALSE") ? <TrueFalse question={question} setQuestion={setQuestion} /> :
                         //Fill in blank
                         <FillBlank question={question} setQuestion={setQuestion} />)}
+                <FaTrash className="text-danger me-3 mb-1 float-end"
+                    onClick={() => (deleteQuestion(question._id))} />
             </div>
 
 

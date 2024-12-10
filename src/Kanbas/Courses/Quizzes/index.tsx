@@ -23,7 +23,7 @@ export default function Quizzes() {
         dispatch(setQuizzes(quizzes));
     };
 
-    const removeAssignment = async (quizId: string) => {
+    const removeQuiz = async (quizId: string) => {
         await quizzesClient.deleteQuiz(quizId);
         dispatch(deleteQuiz(quizId));
     };
@@ -100,7 +100,7 @@ export default function Quizzes() {
                                                     </li>
                                                     <li className="dropdown-item"
 
-                                                        onClick={() => {removeAssignment(quiz._id);
+                                                        onClick={() => {removeQuiz(quiz._id);
                                                             console.log("clicked")
                                                         }}>
                                                             Delete
