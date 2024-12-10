@@ -70,9 +70,6 @@ export default function QuestionEdit({ question, setQuestion, deleteQuestion, re
                         //Fill in blank
                         <FillBlank question={question} setQuestion={setQuestion} />)}
 
-                <FaTrash className="text-danger me-3 mb-1 float-end"
-                    onClick={() => (deleteQuestion(question._id))} />
-
                 <button className="btn btn-secondary m-1" onClick={() => (resetChange())}>Cancel</button>
                 <button className="btn btn-danger m-1" onClick={() => saveQuestion()}>Save</button>
 

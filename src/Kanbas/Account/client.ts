@@ -103,3 +103,14 @@ export const unenrollFromCourse = async (userId: string, courseId: string) => {
     return response.data;
 };
 
+// quiz attempts ---------------------------------------------------------------------------------------------
+export const findQuizAttemptForUser = async (qid: string) => {
+    const { data } = await axiosWithCredentials.get(`${USERS_API}/current/quizzes/${qid}/quizAttempts`);
+    return data;
+}
+
+export const findQuizAttemptsForUser = async () => {
+    const { data } = await axiosWithCredentials.get(`${USERS_API}/current/quizAttempts`);
+    return data;
+}
+

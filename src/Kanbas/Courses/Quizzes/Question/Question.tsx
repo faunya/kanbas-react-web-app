@@ -45,11 +45,21 @@ export default function Question({ questData, questions, setQuestions }: {
     useEffect(() => { }, [question, desc])
 
     return (
-        <div>
-            {editing ? 
-            <QuestionEdit question={question} setQuestion={setQuestion} deleteQuestion={deleteQuestion} resetChange={resetChange} saveQuestion={saveQuestion}/>
-        : <QuestionPreview question={question} deleteQuestion={deleteQuestion}/>}
-            
+        <div className="overflow">
+            {editing ?
+                <QuestionEdit question={question} setQuestion={setQuestion}
+                    deleteQuestion={deleteQuestion} resetChange={resetChange}
+                    saveQuestion={saveQuestion} />
+                : <QuestionPreview question={question} deleteQuestion={deleteQuestion} />}
+
+            <FaTrash className="text-danger me-4  mt-2 float-end"
+                onClick={() => (deleteQuestion(question._id))} />
+
+            <button className="btn btn-secondary me-2 text-align-end  float-end" onClick={() => {
+                (editing) ? setEditing(false) : setEditing(true)}}>
+                {(editing) ? "Preview" : "Edit"}
+            </button>
+
         </div>
     )
 }

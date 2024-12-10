@@ -9,6 +9,8 @@ import { FaTrash } from "react-icons/fa";
 import * as questionClient from "./client";
 import HTMLReactParser from "html-react-parser";
 import PreviewMultiChoice from "./PreviewMultiChoice";
+import PreviewTrueFalse from "./PreviewTrueFalse";
+import PreviewFillBlank from "./PreviewFillBlank";
 export default function QuestionPreview({ question, deleteQuestion }:
     {
         question: any,
@@ -27,14 +29,11 @@ export default function QuestionPreview({ question, deleteQuestion }:
                 <div className="mb-3"><span>{parse(question.question)}</span></div>
 
                 {(question.questType === "MULTIPLE CHOICE") ? <PreviewMultiChoice question={question} />
-                    : ((question.questType === "TRUE FALSE") ? <div>trufalse</div> ://<TrueFalse question={question} /> :
+                    : ((question.questType === "TRUE FALSE") ? <PreviewTrueFalse question={question} /> :
                         //Fill in blank
-                        <div>blank</div>
-                        //<FillBlank question={question} />
+                        <PreviewFillBlank question={question} />
                     )}
 
-                <FaTrash className="text-danger me-3 mb-1 float-end"
-                    onClick={() => (deleteQuestion(question._id))} />
 
             </div>
 

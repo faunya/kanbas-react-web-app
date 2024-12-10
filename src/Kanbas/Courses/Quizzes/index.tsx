@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as quizzesClient from "./client";
 import * as coursesClient from "../client";
+import * as userClient from "../../Account/client";
+
 import { addQuiz, deleteQuiz, setQuizzes, updateQuiz } from "./reducer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaEllipsisV, FaTrash } from "react-icons/fa";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import { MdDoNotDisturb } from "react-icons/md";
@@ -17,6 +19,8 @@ export default function Quizzes() {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const { quizzes } = useSelector((state: any) => state.quizReducer);
     const dispatch = useDispatch();
+
+    const [attempts, setAttempts] = useState(userClient.findQuizAttemptsForUser);
 
     const fetchQuizzes = async () => {
         const quizzes = await coursesClient.findQuizzesForCourse(cid as string);
