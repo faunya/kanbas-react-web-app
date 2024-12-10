@@ -117,3 +117,7 @@ body * {
     overflow-y:auto;
     overflow-x: hidden;
 }
+
+.no-top-border {
+    border-top: none !important;
+}

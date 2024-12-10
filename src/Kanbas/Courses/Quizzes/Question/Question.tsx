@@ -43,7 +43,7 @@ export default function Question({ questData, questions, setQuestions }: {
 
     return (
         <div className="m-3 form" id="question">
-            <div className="grey-border m-2 row">
+            <div className="grey-border m-2 mb-0 row">
                 <div className="m-1 col-sm-3">
                     <input id="wd-name" type="input" className="form-control"
                         value={question.title}
@@ -75,7 +75,7 @@ export default function Question({ questData, questions, setQuestions }: {
                 </div>
             </div>
 
-            <div className="grey-border m-2">
+            <div className="grey-border mt-0 m-2 no-top-border">
                 <div className="row">
                     <div className="m-3">
                         <label htmlFor="wd-quest" className="col-form-label"><b>Question:</b></label>

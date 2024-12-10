@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as quizzesClient from "./client";
 import * as coursesClient from "../client";
-import { deleteQuiz, setQuizzes } from "./reducer";
+import { addQuiz, deleteQuiz, setQuizzes, updateQuiz } from "./reducer";
 import { useEffect } from "react";
 import { FaEllipsisV, FaTrash } from "react-icons/fa";
 import GreenCheckmark from "../Modules/GreenCheckmark";
@@ -28,12 +28,17 @@ export default function Quizzes() {
         dispatch(deleteQuiz(quizId));
     };
 
+    const saveQuiz = async (quiz: any) => {
+        await quizzesClient.updateQuiz(quiz);
+        dispatch(updateQuiz(quiz));
+    };
+
     const curDate = new Date();
 
     useEffect(() => {
         fetchQuizzes();
         console.log(curDate);
-    }, []);
+    }, [quizzes]);
 
     return (
         <div>
@@ -95,19 +100,38 @@ export default function Quizzes() {
                                                     <li className="dropdown-item">
                                                         <a href={"#" + pathname + "/edit/" + quiz._id}>Edit</a>
                                                     </li>
-                                                    <li className="dropdown-item">
-                                                        Publish
-                                                    </li>
+
+                                                    {(quiz.published === true) ?
+                                                        <li className="dropdown-item"
+                                                            onClick={() => {
+                                                                saveQuiz({ ...quiz, published: false });
+                                                            }}>
+                                                            Unpublish
+                                                        </li> :
+                                                        <li className="dropdown-item"
+                                                            onClick={() => {
+                                                                saveQuiz({ ...quiz, published: true });
+                                                            }}>
+                                                            Publish
+                                                        </li>
+                                                    }
+
                                                     <li className="dropdown-item"
 
-                                                        onClick={() => {removeQuiz(quiz._id);
+                                                        onClick={() => {
+                                                            removeQuiz(quiz._id);
                                                             console.log("clicked")
                                                         }}>
-                                                            Delete
+                                                        Delete
                                                     </li>
                                                 </ul>
                                             </div>
-                                            {(quiz.published) ? <GreenCheckmark /> : <MdDoNotDisturb className="text-danger me-2 mb-1" />}
+                                            {(quiz.published) ?
+                                                <GreenCheckmark /> :
+                                                <MdDoNotDisturb className="text-danger mt-2 me-2 mb-1"
+                                                    onClick={() => {
+                                                        saveQuiz({ ...quiz, published: true });
+                                                    }} />}
                                         </div>
 
                                     }

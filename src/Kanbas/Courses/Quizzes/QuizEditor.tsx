@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes, useLocation, useParams } from "react-router";
 import QuizEditorDetails from "./QuizEditorDetails";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addQuiz, deleteQuiz, updateQuiz } from "./reducer";
+import { addQuiz, updateQuiz } from "./reducer";
 
 import * as quizzesClient from "./client";
 import * as coursesClient from "../client";

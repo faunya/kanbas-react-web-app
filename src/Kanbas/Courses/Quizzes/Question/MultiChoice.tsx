@@ -26,13 +26,9 @@ export default function MultiChoice({ question, setQuestion }: {
         const incorrectChoices = choices
             .filter((c: any) => (c._id != correctChoice._id))
 
-        const falseChoices = incorrectChoices.map((c: any) => {
+        incorrectChoices.map((c: any) => {
             c.correct = false;
         });
-        const newChoices = incorrectChoices.push(correctChoice);
-        console.log(correctChoice);
-        //updateChoices(newChoices);
-
     }
 
     const deleteChoice = (choice: any) => {
@@ -56,9 +52,7 @@ export default function MultiChoice({ question, setQuestion }: {
                                 onChange={(e) => {
                                     choices.find((c: any) => c._id === choice._id)
                                         .answer = e.target.value;
-                                    console.log(choices)
-                                }
-                                } />
+                                }} />
                         </div>
 
                         <div className="col-sm-2">
@@ -67,8 +61,8 @@ export default function MultiChoice({ question, setQuestion }: {
                                 onChange={(e) => {
                                     choices.find((c: any) => c._id === choice._id)
                                         .correct = e.target.checked;
-                                    //console.log(choices);
-                                    updateCorrect(choices.find((c: any) => c._id === choice._id));
+                                    updateCorrect(choice);
+                                    console.log(choices);
                                 }} />
                         </div>
 
