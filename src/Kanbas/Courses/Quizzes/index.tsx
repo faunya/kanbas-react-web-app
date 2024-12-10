@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { FaEllipsisV, FaTrash } from "react-icons/fa";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import { MdDoNotDisturb } from "react-icons/md";
+import Quiz from "./Quiz";
 
 export default function Quizzes() {
     const { cid } = useParams();
@@ -37,11 +38,32 @@ export default function Quizzes() {
         dispatch(updateQuiz(quiz));
     };
 
-    const curDate = new Date();
+    const lookupQuestNum = async (qid: string) => {
+        if (qid) {
+            const questions = await quizzesClient.findQuestionsForQuiz(qid);
+            return questions.length;
+        } else
+            return 0;
+    }
+
+    const lookupQuestNums = async () => {
+        try {
+            const questNum = quizzes.map((q: any) => {
+                const questions = lookupQuestNum(q._id);
+                return ({ ...q, questions: questions });
+            })
+            console.log("questnum", questNum);
+            console.log("quizzes", quizzes)
+        } catch (error) {
+            console.error("get questions ", error);
+        }
+    }
 
     useEffect(() => {
         fetchQuizzes();
-    }, [quizzes]);
+
+        lookupQuestNums();
+    }, []);
 
     return (
         <div>
@@ -59,87 +81,7 @@ export default function Quizzes() {
 
                         {quizzes.map
                             ((quiz: any) => (
-                                <li className="wd-lesson wd-quiz-list-item list-group-item p-3 ps-1">
-                                    <BsGripVertical className="me-2 fs-3" />
-
-                                    <span className="vertical-center" style={{ display: "inline-block" }}>
-                                        <a className="wd-quiz-link"
-                                            href={"#" + pathname + "/details/" + quiz._id}>
-                                            {quiz.title}
-                                        </a><br />
-
-                                        <span className="quiz-desc">
-                                            {   //not available condition
-                                                (curDate < new Date(quiz.availableDate)) ?
-                                                    <span><b>Not available until</b> {new Date(quiz.availableDate).toDateString()} </span> :
-
-                                                    //available condition
-                                                    ((curDate >= new Date(quiz.availableDate)) &&
-                                                        (curDate < new Date(quiz.untilDate))) ?
-                                                        <span><b>Available</b></span> :
-
-                                                        //closed condition
-                                                        <span><b>Closed</b></span>
-                                            }
-
-                                            <span> | <b>Due</b> {new Date(quiz.dueDate).toDateString()} | {quiz.points} pts | - Questons </span>
-                                            {
-                                                (currentUser.role === 'STUDENT') &&
-                                                <span> | <b>Score: </b> - </span>
-                                            }
-                                        </span>
-
-                                    </span>
-
-                                    {
-                                        (currentUser.role === 'FACULTY') &&
-                                        <div className="float-end">
-                                            <div className="dropdown float-end">
-                                                <button id="wd-quiz-menu-dropdown" className="btn me-1assign-btn dropdown-toggle"
-                                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <FaEllipsisV />
-                                                </button>
-                                                <ul className="dropdown-menu">
-                                                    <li className="dropdown-item">
-                                                        <a href={"#" + pathname + "/edit/" + quiz._id}>Edit</a>
-                                                    </li>
-
-                                                    {(quiz.published === true) ?
-                                                        <li className="dropdown-item"
-                                                            onClick={() => {
-                                                                saveQuiz({ ...quiz, published: false });
-                                                            }}>
-                                                            Unpublish
-                                                        </li> :
-                                                        <li className="dropdown-item"
-                                                            onClick={() => {
-                                                                saveQuiz({ ...quiz, published: true });
-                                                            }}>
-                                                            Publish
-                                                        </li>
-                                                    }
-
-                                                    <li className="dropdown-item"
-
-                                                        onClick={() => {
-                                                            removeQuiz(quiz._id);
-                                                            console.log("clicked")
-                                                        }}>
-                                                        Delete
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            {(quiz.published) ?
-                                                <GreenCheckmark /> :
-                                                <MdDoNotDisturb className="text-danger mt-2 me-2 mb-1"
-                                                    onClick={() => {
-                                                        saveQuiz({ ...quiz, published: true });
-                                                    }} />}
-                                        </div>
-
-                                    }
-                                </li>
-
+                                <Quiz quiz={quiz} saveQuiz={saveQuiz} removeQuiz={removeQuiz} />
                             ))}
                     </ul>
                 </li>
