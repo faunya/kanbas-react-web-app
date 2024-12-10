@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import * as quizClient from "./client";
 import QuestionPreview from "./Question/QuestionPreview";
 import { useDispatch, useSelector } from "react-redux";
 
+import * as quizClient from "./client";
+import * as userClient from "../../Account/client";
+
 export default function QuizPreview() {
     const { cid, qid } = useParams();
+    const { currentUser } = useSelector((state: any) => state.accountReducer);
 
     const [questions, setQuestions] = useState<any[]>([]);
     const { quizzes } = useSelector((state: any) => state.quizReducer);
     const dispatch = useDispatch();
 
     const lookupQuiz = quizzes.filter((quiz: any) => quiz._id === qid)[0];
-    const [quiz, setQuiz] = useState(lookupQuiz ||
+    const quiz = lookupQuiz ||
     {
         "title": "New Quiz",
         "published": false,
@@ -33,9 +36,45 @@ export default function QuizPreview() {
         "dueDate": "2025-01-01",
         "availableDate": "2025-01-01",
         "untilDate": "2025-01-01",
-    });
+    };
 
-    const lookup = async () => {
+    const date = new Date();
+    const getCurDate = () => date.toDateString();
+    const getCurTime = () => date.toLocaleTimeString("en-US")
+
+    const attemptTemplate = {
+        "attempt": 1,
+        "points": 0,
+        "answers": [],
+        "startDate": date.toISOString(),
+        "user": currentUser._id,
+        "quiz": qid
+    }
+
+    const [score, setScore] = useState(0);
+    const [answers, setAnswers] = useState([]);
+    const [curDate, setCurDate] = useState(getCurDate);
+    const [curTime, setCurTime] = useState(getCurTime);
+    const [attempt, setAttempt] = useState(attemptTemplate);
+
+    const lookupAttempt = async () => {
+        if (qid) {
+            const curAttempt = await userClient.findQuizAttemptForUser(qid);
+            if (!curAttempt) {
+                const newAttempt = await quizClient.createAttemptForQuiz(qid, attemptTemplate);
+                setAttempt(newAttempt);
+                console.log(attempt);
+            } else {
+                setAttempt(curAttempt);
+                setAnswers(curAttempt.answers)
+                setScore(curAttempt.score)
+                setCurDate(new Date(curAttempt.startDate).toDateString());
+                setCurTime(new Date(curAttempt.startDate).toLocaleTimeString("en-US"));
+            }
+        }
+    }
+
+    const lookupQuestions = async () => {
         try {
             if (qid) {
                 const questions = await quizClient.findQuestionsForQuiz(qid);
@@ -47,20 +86,18 @@ export default function QuizPreview() {
         }
     }
 
-    const date = new Date();
-    const curDate = date.toDateString();
-    const curTime = date.toLocaleTimeString("en-US")
 
     useEffect(() => {
-        lookup();
-    })
+        lookupQuestions();
+        lookupAttempt();
+    }, [])
     return (
         <div>
             <h1><b>{quiz.title}</b></h1>
             <span>Started: {curDate} at {curTime}</span>
             <hr />
             {questions.map((question: any) => (
-            <QuestionPreview question={question} />
-        ))}</div>
+                <QuestionPreview question={question} />
+            ))}</div>
     )
 }

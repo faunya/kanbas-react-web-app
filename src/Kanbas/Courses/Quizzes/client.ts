@@ -29,3 +29,12 @@ export const createQuestionForQuiz = async (quizId: string, question: any) => {
     return response.data;
 };
 
+// attempt ----------------------------------------------------------------------------
+export const createAttemptForQuiz = async (quizId: string, attempt: any) => {
+    const response = await axiosWithCredentials.post(
+        `${QUIZZES_API}/${quizId}/attempts`,
+        attempt
+    );
+    return response.data;
+};
+
