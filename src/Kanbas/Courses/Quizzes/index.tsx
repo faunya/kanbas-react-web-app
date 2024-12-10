@@ -37,7 +37,6 @@ export default function Quizzes() {
 
     useEffect(() => {
         fetchQuizzes();
-        console.log(curDate);
     }, [quizzes]);
 
     return (

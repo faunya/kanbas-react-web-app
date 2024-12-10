@@ -47,6 +47,13 @@ export default function QuizEdtior() {
         return newQuiz;
     };
 
+    const createPublishedQuizForCourse = async () => {
+        if (!cid) return;
+        const newQuiz = await coursesClient.createQuizForCourse(cid, {...quiz, published: true});
+        dispatch(addQuiz(newQuiz));
+        return newQuiz;
+    };
+
     const saveQuiz = async (quiz: any) => {
         await quizzesClient.updateQuiz(quiz);
         dispatch(updateQuiz(quiz));
@@ -91,15 +98,26 @@ export default function QuizEdtior() {
             </Routes>
 
             <hr />
-            <button className="btn btn-danger float-end " onClick={() => {
+            <a className="btn btn-danger float-end m-1 save-btn" href={"#/Kanbas/Courses/" + cid + "/Quizzes"}
+                onClick={() => {
+                    if (lookupQuiz) {;
+                        saveQuiz({ ...quiz, published: true });
+                    } else {
+                        createPublishedQuizForCourse();
+                    }
+                }}>Save and Publish</a>
+
+            <button className="btn btn-secondary float-end m-1" onClick={() => {
                 if (lookupQuiz) {
                     saveQuiz(quiz);
                 } else {
                     createQuizForCourse();
                 }
             }}>
-                <a className="save-btn" href={"#/Kanbas/Courses/" + cid + "/Quizzes"}>Save</a></button>
-            <button className="btn btn-secondary float-end"><a className="cancel-btn" href={"#/Kanbas/Courses/" + cid + "/Quizzes"}>Cancel</a></button>
+                <a className="cancel-btn" href={"#/Kanbas/Courses/" + cid + "/Quizzes"}>Save</a>
+            </button>
+
+            <button className="btn btn-secondary float-end m-1"><a className="cancel-btn" href={"#/Kanbas/Courses/" + cid + "/Quizzes"}>Cancel</a></button>
 
         </div>
     )

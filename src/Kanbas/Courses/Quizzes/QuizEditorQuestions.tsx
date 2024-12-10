@@ -13,8 +13,7 @@ export default function QuizEditorQuestions({ quiz, setQuiz, createQuizForCourse
         createQuizForCourse: (quiz: any) => void,
         saveQuiz: (quiz: any) => void
     }) {
-    const { cid, qid } = useParams();
-    const { pathname } = useLocation();
+    const { qid } = useParams();
 
     const [questions, setQuestions] = useState<any[]>([]);
     const newQuestionTemplate = {
@@ -62,7 +61,6 @@ export default function QuizEditorQuestions({ quiz, setQuiz, createQuizForCourse
     }, [])
     return (
         <div>
-
             {questions.map
                 ((question: any) => (
                     <Question questData={question} questions={questions} setQuestions={setQuestions} />

@@ -21,7 +21,7 @@ export default function Kanbas() {
     _id: "1234", name: "New Course", number: "New Number",
     startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
   });
-  const [enrolling, setEnrolling] = useState<boolean>(true);
+  const [enrolling, setEnrolling] = useState<boolean>(false);
   const [displayAll, setDisplayAll] = useState(true);
 
   const addNewCourse = async () => {
