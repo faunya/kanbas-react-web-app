@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import Quizzes from "./Quizzes";
 import QuizEditor from "./Quizzes/QuizEditor";
 import QuizDetails from "./Quizzes/Details";
+import QuizPreview from "./Quizzes/QuizPreview";
 
 export default function Courses({ courses }: { courses: any[]; }) {
     const { cid } = useParams();
@@ -29,7 +30,7 @@ export default function Courses({ courses }: { courses: any[]; }) {
 
     useEffect(() => {
         findUsersForCourse();
-      }, []);
+    }, []);
 
     return (
         <div id="wd-courses">
@@ -49,13 +50,16 @@ export default function Courses({ courses }: { courses: any[]; }) {
                         <Route path="/" element={<Navigate to="Home" />} />
                         <Route path="Home" element={<Home />} />
                         <Route path="Modules" element={<Modules />} />
+
                         <Route path="Assignments" element={<Assignments />} />
                         <Route path="Assignments/:aid" element={<AssignmentEditor />} />
+
                         <Route path="People" element={<PeopleTable users={users} />} />
+
                         <Route path="Quizzes" element={< Quizzes />} />
                         <Route path="Quizzes/edit/:qid/*" element={<QuizEditor />} />
                         <Route path="Quizzes/details/:qid" element={<QuizDetails />} />
-                        <Route path="Quizzes/preview/:qid" element={<h1>Quiz preview</h1>} />
+                        <Route path="Quizzes/preview/:qid" element={<QuizPreview />} />
                     </Routes>
                 </div>
             </div>

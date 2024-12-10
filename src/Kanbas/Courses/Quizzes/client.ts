@@ -21,7 +21,7 @@ export const findQuestionsForQuiz = async (quizId: string) => {
     return response.data;
 };
 
-export const createQuizForCourse = async (quizId: string, question: any) => {
+export const createQuestionForQuiz = async (quizId: string, question: any) => {
     const response = await axiosWithCredentials.post(
         `${QUIZZES_API}/${quizId}/questions`,
         question

@@ -48,7 +48,7 @@ export default function QuizEditorQuestions({ quiz, setQuiz, createQuizForCourse
 
     const createNewQuestion = async () => {
         if (qid) {
-            const newQuestion = await quizClient.createQuizForCourse(qid, newQuestionTemplate)
+            const newQuestion = await quizClient.createQuestionForQuiz(qid, newQuestionTemplate)
             const newQuestions = [...questions, newQuestion];
             setQuestions(newQuestions)
             return newQuestion;

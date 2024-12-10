@@ -11,10 +11,9 @@ import HTMLReactParser from "html-react-parser";
 import PreviewMultiChoice from "./PreviewMultiChoice";
 import PreviewTrueFalse from "./PreviewTrueFalse";
 import PreviewFillBlank from "./PreviewFillBlank";
-export default function QuestionPreview({ question, deleteQuestion }:
+export default function QuestionPreview({ question }:
     {
-        question: any,
-        deleteQuestion: (questionId: string) => void
+        question: any
     }) {
 
     return (
