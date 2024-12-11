@@ -116,17 +116,14 @@ export default function QuizPreview() {
         }
     }
 
-    const [seeResults, setSeeResults] = useState(false);
+    const [seeResults, setSeeResults] = useState(!redoable(attempt));
 
 
     useEffect(() => {
         lookupQuestions();
         lookupAttempt();
-        if (!redoable(attempt)) {
-            console.log("straight to results")
-            setSeeResults(true);
-        }
-    }, [seeResults])
+        console.log("answers", answers);
+    }, [])
     return (
         <div>
             <h1><b>{quiz.title}</b></h1>
