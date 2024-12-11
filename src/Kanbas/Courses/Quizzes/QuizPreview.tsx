@@ -12,7 +12,6 @@ export default function QuizPreview() {
     const { cid, qid } = useParams();
     const { currentUser } = useSelector((state: any) => state.accountReducer);
 
-    const [seeResults, setSeeResults] = useState(false);
 
     const [questions, setQuestions] = useState<any[]>([]);
     const { quizzes } = useSelector((state: any) => state.quizReducer);
@@ -47,7 +46,8 @@ export default function QuizPreview() {
     const getCurTime = () => date.toLocaleTimeString("en-US")
 
     const attemptTemplate = {
-        "attempt": 1,
+        "_id": new Date().toISOString(),
+        "attempt": 0,
         "points": 0,
         "answers": {},
         "startDate": date.toISOString(),
@@ -68,14 +68,16 @@ export default function QuizPreview() {
             if (!curAttempt) {
                 const newAttempt = await quizClient.createAttemptForQuiz(qid, attemptTemplate);
                 setAttempt(newAttempt);
-                console.log(attempt);
+                console.log("new attempt", attempt);
             } else {
-                const newAttempt = { ...curAttempt, attempt: curAttempt.attempt + 1 }
-                setAttempt(newAttempt);
+                console.log("current attempt", curAttempt)
+                setAttempt(curAttempt);
                 setAnswers(curAttempt.answers)
                 setScore(curAttempt.points)
                 setCurDate(new Date(curAttempt.startDate).toDateString());
                 setCurTime(new Date(curAttempt.startDate).toLocaleTimeString("en-US"));
+                console.log("the attempt", attempt)
+                setSeeResults(!redoable(curAttempt));
             }
         }
     }
@@ -94,7 +96,7 @@ export default function QuizPreview() {
 
     const updateAttempt = async () => {
         const totalScore = sumValues(scores);
-        const newAttempt = { ...attempt, points: totalScore, answers: answers };
+        const newAttempt = { ...attempt, points: totalScore, answers: answers, attempt: attempt.attempt + 1 };
         await attemptClient.updateAttempt(newAttempt);
         setScore(totalScore);
         setAttempt(newAttempt);
@@ -102,10 +104,29 @@ export default function QuizPreview() {
 
     const sumValues = (obj: any) => Object.values(obj).reduce((a: number, b: any) => a + b, 0);
 
+    const redoable = (attempt: any) => {
+        if (currentUser.role == "FACULTY") {
+            return true;
+        } else if (!quiz.multiAttempt) {
+            console.log("single attempt", attempt.attempt)
+            return attempt.attempt < 1;
+        } else {
+            console.log("multiAttempt", quiz.numAttempt)
+            return (attempt.attempt < quiz.numAttempt);
+        }
+    }
+
+    const [seeResults, setSeeResults] = useState(false);
+
+
     useEffect(() => {
         lookupQuestions();
         lookupAttempt();
-    }, [])
+        if (!redoable(attempt)) {
+            console.log("straight to results")
+            setSeeResults(true);
+        }
+    }, [seeResults])
     return (
         <div>
             <h1><b>{quiz.title}</b></h1>
@@ -127,6 +148,7 @@ export default function QuizPreview() {
                         }} >
                         Submit</button>
                 </div> :
+
                 <div>
                     {questions.map((question: any) => (
                         <QuestionResult
@@ -136,11 +158,15 @@ export default function QuizPreview() {
 
                     ))}
 
-                    {(currentUser.role === "FACULTY" ||
-                        ((quiz.multiAttempt) && (attempt.attempt < quiz.numAttempt))) &&
+                    {redoable(attempt) &&
                         <button className="btn btn-danger save-btn float-end me-4"
-                            onClick={() => {
+                            onClick={() => {//resetAttempt(attempt);
+                                console.log(attempt);
                                 setSeeResults(false);
+                                setAnswers({});
+                                setScore(0);
+                                setScores({});
+                                updateAttempt();
                             }} >
                             Take Again</button>}
                 </div>}
