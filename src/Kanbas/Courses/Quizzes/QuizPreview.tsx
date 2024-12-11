@@ -6,10 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import * as quizClient from "./client";
 import * as userClient from "../../Account/client";
 import * as attemptClient from "./AttemptClient";
+import QuestionResult from "./Question/QuestionResult";
 
 export default function QuizPreview() {
     const { cid, qid } = useParams();
     const { currentUser } = useSelector((state: any) => state.accountReducer);
+
+    const [seeResults, setSeeResults] = useState(false);
 
     const [questions, setQuestions] = useState<any[]>([]);
     const { quizzes } = useSelector((state: any) => state.quizReducer);
@@ -67,7 +70,8 @@ export default function QuizPreview() {
                 setAttempt(newAttempt);
                 console.log(attempt);
             } else {
-                setAttempt(curAttempt);
+                const newAttempt = { ...curAttempt, attempt: curAttempt.attempt + 1 }
+                setAttempt(newAttempt);
                 setAnswers(curAttempt.answers)
                 setScore(curAttempt.points)
                 setCurDate(new Date(curAttempt.startDate).toDateString());
@@ -89,12 +93,9 @@ export default function QuizPreview() {
     }
 
     const updateAttempt = async () => {
-        console.log("old", attempt)
         const totalScore = sumValues(scores);
-        console.log(totalScore);
-        const newAttempt = { ...attempt, points: totalScore };
+        const newAttempt = { ...attempt, points: totalScore , answers: answers};
         await attemptClient.updateAttempt(newAttempt);
-        console.log("new", newAttempt)
         setScore(totalScore);
         setAttempt(newAttempt);
     }
@@ -109,18 +110,31 @@ export default function QuizPreview() {
         <div>
             <h1><b>{quiz.title}</b></h1>
             <span>Started: {curDate} at {curTime}</span>
-            {score} hello
+
             <hr />
-            {questions.map((question: any) => (
-                <QuestionPreview
-                    question={question}
-                    scores={scores} setScores={setScores}
-                    answers={answers} setAnswers={setAnswers} />
-            ))}
-            <button onClick={() => {
-                updateAttempt();
-            }
-            } >Yea</button>
+
+            {!seeResults ?
+                <div>{questions.map((question: any) => (
+                    <QuestionPreview
+                        question={question}
+                        scores={scores} setScores={setScores}
+                        answers={answers} setAnswers={setAnswers} />
+                ))}
+                    <button className="btn btn-danger save-btn float-end me-4"
+                        onClick={() => {
+                            updateAttempt();
+                            setSeeResults(true);
+                        }} >
+                        Submit</button>
+                </div> :
+                <div>
+                    {questions.map((question: any) => (
+                        <QuestionResult
+                            question={question}
+                            scores={scores} setScores={setScores}
+                            answers={answers} setAnswers={setAnswers} />
+                    ))}
+                </div>}
         </div>
     )
 }

@@ -49,7 +49,12 @@ body * {
 .grey-border {
     border: solid rgb(194, 194, 194);
 }
-
+.red-border {
+    border: solid red;
+}
+.green-border {
+    border: solid green;
+}
 
 #wd-search-assignment {
     float: left;

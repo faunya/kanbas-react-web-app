@@ -60,6 +60,7 @@ export default function Courses({ courses }: { courses: any[]; }) {
                         <Route path="Quizzes/edit/:qid/*" element={<QuizEditor />} />
                         <Route path="Quizzes/details/:qid" element={<QuizDetails />} />
                         <Route path="Quizzes/preview/:qid" element={<QuizPreview />} />
+
                     </Routes>
                 </div>
             </div>
