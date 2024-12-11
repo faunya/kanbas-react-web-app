@@ -25,8 +25,17 @@ export default function Quizzes() {
 
     const fetchQuizzes = async () => {
         const quizzes = await coursesClient.findQuizzesForCourse(cid as string);
+        if (currentUser.role == "STUDENT") {
+            dispatch(setQuizzes(publishedQuizzes()));
+            return;
+        }
         dispatch(setQuizzes(quizzes));
     };
+
+    const publishedQuizzes = () => {
+        const published = quizzes.filter((quiz : any) => quiz.published)
+        return published;
+    }
 
     const removeQuiz = async (quizId: string) => {
         await quizzesClient.deleteQuiz(quizId);
