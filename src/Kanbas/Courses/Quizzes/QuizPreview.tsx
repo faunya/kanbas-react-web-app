@@ -136,7 +136,8 @@ export default function QuizPreview() {
 
                     ))}
 
-                    {((!quiz.multiAttempt) || (attempt.attempt < quiz.numAttempt)) &&
+                    {(currentUser.role === "FACULTY" ||
+                        ((quiz.multiAttempt) && (attempt.attempt < quiz.numAttempt))) &&
                         <button className="btn btn-danger save-btn float-end me-4"
                             onClick={() => {
                                 setSeeResults(false);

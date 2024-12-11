@@ -18,7 +18,6 @@ export default function PreviewTrueFalse({ question, scores, setScores, answers,
     const [score, setScore] = useState(0);
     return (
         <div>
-            {score}<br />
             <input type="radio" name={question._id} id={"true" + question._id}
                 value={(question.trueFalse) ? question.points : 0}
                 onChange={(e) => {

@@ -18,7 +18,6 @@ export default function PreviewMultiChoice({ question, scores, setScores, answer
 
     return (
         <div>
-            {score}
             {question.choices.map((c: any) =>
                 <div>
                     <input type="radio" className="form-check-input" id={c._id} name={question._id}

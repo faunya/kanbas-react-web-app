@@ -29,7 +29,6 @@ export default function PreviewFillBlank({ question , scores, setScores, answers
 
     return (
         <div>
-            {score} <br />
             <input type="text" className="form-control" placeholder="Answer" 
             onChange={(e) => checkAns(e.target.value)}/>
         </div>
