@@ -38,9 +38,8 @@ export default function Quiz({ quiz, saveQuiz, removeQuiz }:
 
     return (
         <li className="wd-lesson wd-quiz-list-item list-group-item p-3 ps-1">
-            <BsGripVertical className="me-2 fs-3" />
 
-            <span className="vertical-center" style={{ display: "inline-block" }}>
+            <span className="vertical-center ps-2" style={{ display: "inline-block" }}>
                 <a className="wd-quiz-link"
                     href={"#" + pathname + "/details/" + quiz._id}>
                     {quiz.title}

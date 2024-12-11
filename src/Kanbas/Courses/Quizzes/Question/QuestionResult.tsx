@@ -15,6 +15,8 @@ export default function QuestionResult({ question, scores, setScores, answers, s
         setAnswers: (score: any) => void,
     }) {
 
+        
+
     return (
         <div className="m-3 form" id="question">
             <div className={((scores[question._id] > 0) ?
