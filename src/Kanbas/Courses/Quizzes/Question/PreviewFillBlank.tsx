@@ -21,11 +21,10 @@ export default function PreviewFillBlank({ question , scores, setScores, answers
         const rightAns = question.blankAns.find((a: any) => a.answer == answer);
         if (rightAns) {
             updateScores(question.points);
-            setAnswers({...answers, [question._id]: true})
         } else {
             updateScores(0);
-            setAnswers({...answers, [question._id]: false})
         }
+        setAnswers({...answers, [question._id]: answer})
     }
 
     return (

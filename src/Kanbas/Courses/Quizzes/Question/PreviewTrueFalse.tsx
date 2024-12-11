@@ -23,7 +23,7 @@ export default function PreviewTrueFalse({ question, scores, setScores, answers,
                 value={(question.trueFalse) ? question.points : 0}
                 onChange={(e) => {
                     updateScores(parseInt(e.target.value));
-                    setAnswers({...answers, [question._id]: question.trueFalse});
+                    setAnswers({...answers, [question._id]: "true"});
                     console.log(scores)
                 }} />
             <label htmlFor={"true" + question._id}>True</label>
@@ -33,7 +33,7 @@ export default function PreviewTrueFalse({ question, scores, setScores, answers,
                 value={(question.trueFalse) ? 0 : question.points}
                 onChange={(e) => {
                     updateScores(parseInt(e.target.value));
-                    setAnswers({...answers, [question._id]: !question.trueFalse});
+                    setAnswers({...answers, [question._id]: "false"});
                 }} />
             <label htmlFor={"false" + question._id}>False</label>
             <br />

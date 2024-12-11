@@ -94,7 +94,7 @@ export default function QuizPreview() {
 
     const updateAttempt = async () => {
         const totalScore = sumValues(scores);
-        const newAttempt = { ...attempt, points: totalScore , answers: answers};
+        const newAttempt = { ...attempt, points: totalScore, answers: answers };
         await attemptClient.updateAttempt(newAttempt);
         setScore(totalScore);
         setAttempt(newAttempt);
@@ -133,7 +133,15 @@ export default function QuizPreview() {
                             question={question}
                             scores={scores} setScores={setScores}
                             answers={answers} setAnswers={setAnswers} />
+
                     ))}
+
+                    {((!quiz.multiAttempt) || (attempt.attempt < quiz.numAttempt)) &&
+                        <button className="btn btn-danger save-btn float-end me-4"
+                            onClick={() => {
+                                setSeeResults(false);
+                            }} >
+                            Take Again</button>}
                 </div>}
         </div>
     )

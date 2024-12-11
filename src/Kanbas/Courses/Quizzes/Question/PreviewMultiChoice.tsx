@@ -25,7 +25,7 @@ export default function PreviewMultiChoice({ question, scores, setScores, answer
                         value={(c.correct) ? question.points : 0}
                         onChange={(e) => {
                             updateScores(parseInt(e.target.value));
-                            setAnswers({...answers, [question._id]: c.correct});
+                            setAnswers({...answers, [question._id]: c._id});
                         }} />
 
                     <label className="ms-2" htmlFor={c._id}>{c.answer}</label>
