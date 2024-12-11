@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import * as quizClient from "./client";
 import * as userClient from "../../Account/client";
+import * as attemptClient from "./AttemptClient";
 
 export default function QuizPreview() {
     const { cid, qid } = useParams();
@@ -45,14 +46,15 @@ export default function QuizPreview() {
     const attemptTemplate = {
         "attempt": 1,
         "points": 0,
-        "answers": [],
+        "answers": {},
         "startDate": date.toISOString(),
         "user": currentUser._id,
         "quiz": qid
     }
 
+    const [scores, setScores] = useState({});
     const [score, setScore] = useState(0);
-    const [answers, setAnswers] = useState([]);
+    const [answers, setAnswers] = useState({});
     const [curDate, setCurDate] = useState(getCurDate);
     const [curTime, setCurTime] = useState(getCurTime);
     const [attempt, setAttempt] = useState(attemptTemplate);
@@ -67,7 +69,7 @@ export default function QuizPreview() {
             } else {
                 setAttempt(curAttempt);
                 setAnswers(curAttempt.answers)
-                setScore(curAttempt.score)
+                setScore(curAttempt.points)
                 setCurDate(new Date(curAttempt.startDate).toDateString());
                 setCurTime(new Date(curAttempt.startDate).toLocaleTimeString("en-US"));
             }
@@ -86,6 +88,18 @@ export default function QuizPreview() {
         }
     }
 
+    const updateAttempt = async () => {
+        console.log("old", attempt)
+        const totalScore = sumValues(scores);
+        console.log(totalScore);
+        const newAttempt = { ...attempt, points: totalScore };
+        await attemptClient.updateAttempt(newAttempt);
+        console.log("new", newAttempt)
+        setScore(totalScore);
+        setAttempt(newAttempt);
+    }
+
+    const sumValues = (obj: any) => Object.values(obj).reduce((a: number, b: any) => a + b, 0);
 
     useEffect(() => {
         lookupQuestions();
@@ -95,9 +109,18 @@ export default function QuizPreview() {
         <div>
             <h1><b>{quiz.title}</b></h1>
             <span>Started: {curDate} at {curTime}</span>
+            {score} hello
             <hr />
             {questions.map((question: any) => (
-                <QuestionPreview question={question} />
-            ))}</div>
+                <QuestionPreview
+                    question={question}
+                    scores={scores} setScores={setScores}
+                    answers={answers} setAnswers={setAnswers} />
+            ))}
+            <button onClick={() => {
+                updateAttempt();
+            }
+            } >Yea</button>
+        </div>
     )
 }

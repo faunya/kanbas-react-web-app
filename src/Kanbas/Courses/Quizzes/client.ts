@@ -38,3 +38,4 @@ export const createAttemptForQuiz = async (quizId: string, attempt: any) => {
     return response.data;
 };
 
+

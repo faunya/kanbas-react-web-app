@@ -1,19 +1,14 @@
-import { useEffect, useState } from "react";
-import MultiChoice from "./MultiChoice";
-import TrueFalse from "./TrueFalse";
-import FillBlank from "./FillBlank";
-import DefaultEditor from "react-simple-wysiwyg";
 import parse from 'html-react-parser';
-import { FaTrash } from "react-icons/fa";
-
-import * as questionClient from "./client";
-import HTMLReactParser from "html-react-parser";
 import PreviewMultiChoice from "./PreviewMultiChoice";
 import PreviewTrueFalse from "./PreviewTrueFalse";
 import PreviewFillBlank from "./PreviewFillBlank";
-export default function QuestionPreview({ question }:
+export default function QuestionPreview({ question, scores, setScores, answers, setAnswers }:
     {
-        question: any
+        question: any,
+        scores: any,
+        setScores: (score: any) => void,
+        answers: any,
+        setAnswers: (score: any) => void,
     }) {
 
     return (
@@ -27,10 +22,16 @@ export default function QuestionPreview({ question }:
             <div className="grey-border mt-0 m-2 no-top-border p-3">
                 <div className="mb-3"><span>{parse(question.question)}</span></div>
 
-                {(question.questType === "MULTIPLE CHOICE") ? <PreviewMultiChoice question={question} />
-                    : ((question.questType === "TRUE FALSE") ? <PreviewTrueFalse question={question} /> :
+                {(question.questType === "MULTIPLE CHOICE") ? <PreviewMultiChoice question={question}
+                    scores={scores} setScores={setScores}
+                    answers={answers} setAnswers={setAnswers} />
+                    : ((question.questType === "TRUE FALSE") ? <PreviewTrueFalse question={question}
+                        scores={scores} setScores={setScores}
+                        answers={answers} setAnswers={setAnswers} /> :
                         //Fill in blank
-                        <PreviewFillBlank question={question} />
+                        <PreviewFillBlank question={question}
+                            scores={scores} setScores={setScores}
+                            answers={answers} setAnswers={setAnswers} />
                     )}
 
 

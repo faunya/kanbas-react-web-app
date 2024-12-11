@@ -41,7 +41,8 @@ export default function Question({ questData, questions, setQuestions }: {
                 }
             }));
     }
-
+    const [scores, setScores] = useState({});
+    const [answers, setAnswers] = useState([]);
     useEffect(() => { }, [question, desc])
 
     return (
@@ -50,7 +51,9 @@ export default function Question({ questData, questions, setQuestions }: {
                 <QuestionEdit question={question} setQuestion={setQuestion}
                     deleteQuestion={deleteQuestion} resetChange={resetChange}
                     saveQuestion={saveQuestion} />
-                : <QuestionPreview question={question} />}
+                : <QuestionPreview question={question}
+                    scores={scores} setScores={setScores}
+                    answers={answers} setAnswers={setAnswers} />}
 
             <FaTrash className="text-danger me-4  mt-2 float-end"
                 onClick={() => (deleteQuestion(question._id))} />
